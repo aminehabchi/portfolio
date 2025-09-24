@@ -15,7 +15,7 @@ const ProjectsSection = () => {
         <section className="py-20 px-6">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                    Featured Projects
+                    Projects
                 </h2>
 
                 {/* Filter Buttons */}
