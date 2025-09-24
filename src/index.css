@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@keyframes bubble {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  25%  { transform: translate(5px, -8px) scale(1.02); }
+  50%  { transform: translate(-6px, 6px) scale(0.98); }
+  75%  { transform: translate(-4px, -5px) scale(1.03); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-bubble {
+  animation: bubble 6s ease-in-out infinite alternate;
+}
