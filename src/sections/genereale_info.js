@@ -16,10 +16,16 @@ const InfoSection = ({ handleDownloadCV }) => {
 
                 {/* Right: Info */}
                 <div className="text-center lg:text-left flex-1">
-                    {/* Name & Role */}
-                    <h1 className="text-4xl md:text-5xl font-extrabold mb-3 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-                        Amine HABCHI
-                    </h1>
+                    {/* Greeting */}
+                    <p className="text-gray-400 text-3xl md:text-4xl mb-4">
+                        Hi there, I am{" "}
+                        <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent font-extrabold text-4xl md:text-5xl">
+                            Amine HABCHI
+                        </span>
+                    </p>
+
+
+                    {/* Role */}
                     <p className="text-xl md:text-2xl text-gray-300 mb-6">
                         Full Stack Developer & Creative Problem Solver
                     </p>
@@ -36,7 +42,7 @@ const InfoSection = ({ handleDownloadCV }) => {
                     <div className="flex flex-col sm:flex-row gap-6 mb-8 text-gray-300 justify-center lg:justify-start">
                         <div className="flex items-center gap-2">
                             <Book size={20} className="text-purple-500" />
-                            <span>Zone01 Oujda</span>
+                            <span>Bachelor in Computer Science - University of XYZ</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <MapPin size={20} className="text-green-500" />
@@ -79,12 +85,13 @@ const InfoSection = ({ handleDownloadCV }) => {
                             >
                                 <Trophy size={20} />
                             </a>
-                            <p
+                            <a
+                                href="mailto:amine.habchi.01@gmail.com"
                                 className="flex items-center gap-1 px-3 py-2 rounded-full bg-gray-800 hover:bg-green-600 transition-all duration-300 hover:scale-105"
                             >
                                 <Mail size={18} />
                                 <span className="text-sm">amine.habchi.01@gmail.com</span>
-                            </p>
+                            </a>
                         </div>
                     </div>
                 </div>

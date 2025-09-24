@@ -134,6 +134,16 @@ export const projects = [
         github: "https://github.com/aminehabchi/mini-framework",
         live: "#",
     },
+    {
+        id: 13,
+        title: "CV",
+        description: "a CV build using js ,html, css in old theme",
+        image: "/cv.png",
+        tags: ["js", "HTML", "CSS"],
+        category: "frontend",
+        github: "https://github.com/aminehabchi/CV",
+        live: "https://aminehabchi.github.io/CV/",
+    }
 ];
 
 export const skillsData = {
