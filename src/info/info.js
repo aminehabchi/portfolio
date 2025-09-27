@@ -114,7 +114,7 @@ export const projects = [
     },
     {
         id: 11,
-        title: "TCP-CHAT",
+        title: "TCP CHAT",
         description:
             "A TCP chat server built in both Rust and Go that creates a group chat environment. Users connect to the server using netcat (nc) or any TCP client to participate in real-time group messaging.",
         image: "none",
@@ -125,7 +125,7 @@ export const projects = [
     },
     {
         id: 12,
-        title: "mini-framework",
+        title: "mini framework",
         description:
             "A lightweight front-end JavaScript framework built from scratch, featuring virtual DOM, component-based architecture, client-side routing, and state management. Perfect for learning how modern frameworks like React work under the hood or for building small SPAs.",
         image: "none",
