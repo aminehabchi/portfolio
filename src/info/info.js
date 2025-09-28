@@ -143,6 +143,16 @@ export const projects = [
         category: "frontend",
         github: "https://github.com/aminehabchi/CV",
         live: "https://aminehabchi.github.io/CV/",
+    },
+    {
+        id: 14,
+        title: "FS",
+        description: "This is a learning project where I implemented a simple filesystem in Rust. The goal of this project was to understand how filesystems work at a low level and how to manage files, inodes, and blocks programmatically.",
+        image: "none",
+        tags: ["Rust", "Unix", "Filesystem", "Implimentation"],
+        category: "lowlevel",
+        github: "https://github.com/aminehabchi/FS",
+        live: "#",
     }
 ];
 
