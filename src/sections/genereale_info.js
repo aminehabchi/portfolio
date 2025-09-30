@@ -77,7 +77,7 @@ const InfoSection = ({ handleDownloadCV }) => {
               <Github size={20} />
             </a>
             <a
-              href="https://www.linkedin.com/in/amine-habchi-1a9aa4237/"
+              href="https://www.linkedin.com/in/aminehabchi/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-gray-800 hover:bg-blue-600 transition-all duration-300 hover:scale-110"
