@@ -374,11 +374,6 @@ const Portfolio = () => {
           overflow: hidden;
         }
         
-        @media (min-width: 480px) {
-          .xs\:inline {
-            display: inline;
-          }
-        }
       `}</style>
       
       {/* Navigation Bar */}
