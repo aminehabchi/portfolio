@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import {
   Download,
   Github,
@@ -171,50 +172,107 @@ export const projects = [
     github: "https://github.com/aminehabchi/FS",
     live: "#",
   },
+  {
+    id: 15,
+    title: "Echo & Script",
+    description:
+      "A full-stack social blogging platform that combines content creation with social networking features. this platform enables users to create and share blog posts, interact through likes and comments, follow other users, and communicate in real-time via WebSocket-powered notifications and chat.",
+    image: "./echo_script.png",
+    tags: ["Spring-boot", "angular", "spring-security", "jwt", "websocket", "postgresql", "docker", "flyway-migrations", "redis", "junit"],
+    category: "fullstack",
+    github: "https://github.com/aminehabchi/Echo_Script",
+    live: "#",
+  },
+  {
+    id: 16,
+    title: "Ideathon",
+    description:
+      "Ideathon is a platform where individuals, startups, and organizations can launch short idea challenges—called ideathons—to gather fresh perspectives, test assumptions, and spark innovation.",
+    image: "./ideathon.png",
+    tags: ["go", "sqlite", "next.js", "session", "hackthon"],
+    category: "fullstack",
+    github: "https://github.com/aminehabchi/IdeaThon",
+    live: "https://idea-thon.vercel.app/",
+  },
 ];
 
 export const filterCategories = [
-  { key: "all", label: "All", icon: Layers },
-  { key: "frontend", label: "Frontend", icon: Globe },
-  { key: "backend", label: "Backend", icon: Database },
-  { key: "fullstack", label: "Full Stack", icon: Code },
-  { key: "lowlevel", label: "Low Level", icon: Wrench },
-  { key: "tools", label: "Tools", icon: Wrench },
+  { key: "all", label: "All", icon: Layers, gradient: "from-emerald-600 to-cyan-600", hoverGradient: "from-emerald-500 to-cyan-500" },
+  { key: "frontend", label: "Frontend", icon: Globe, gradient: "from-blue-600 to-cyan-600", hoverGradient: "from-blue-500 to-cyan-500" },
+  { key: "backend", label: "Backend", icon: Database, gradient: "from-green-600 to-emerald-600", hoverGradient: "from-green-500 to-emerald-500" },
+  { key: "fullstack", label: "Full Stack", icon: Code, gradient: "from-amber-600 via-orange-600 to-red-600", hoverGradient: "from-amber-500 via-orange-500 to-red-500" },
+  { key: "lowlevel", label: "Low Level", icon: Wrench, gradient: "from-violet-600 to-purple-600", hoverGradient: "from-violet-500 to-purple-500" },
+  { key: "tools", label: "Tools", icon: Wrench, gradient: "from-pink-600 to-rose-600", hoverGradient: "from-pink-500 to-rose-500" },
 ];
 
 export const skillsData = {
   frontend: [
-    { name: "React", level: 95, color: "#3b82f6" },
-    { name: "JavaScript", level: 90, color: "#eab308" },
-    { name: "TypeScript", level: 85, color: "#2563eb" },
-    { name: "HTML/CSS", level: 90, color: "#f97316" },
-    { name: "Tailwind", level: 85, color: "#06b6d4" },
-    { name: "Next.js", level: 80, color: "#374151" },
-    { name: "Angular", level: 80, color: "#dc2626" },
+    { name: "React", level: 95, color: "#60a5fa" },
+    { name: "JavaScript", level: 90, color: "#fbbf24" },
+    { name: "TypeScript", level: 85, color: "#3b82f6" },
+    { name: "HTML/CSS", level: 90, color: "#fb923c" },
+    { name: "Tailwind", level: 85, color: "#22d3ee" },
+    { name: "Next.js", level: 80, color: "#ffffff" },
+    { name: "Angular", level: 80, color: "#ef4444" },
   ],
   backend: [
-    { name: "Node.js", level: 85, color: "#22c55e" },
-    { name: "WebSocket", level: 80, color: "#2563eb" },
-    { name: "GraphQL", level: 70, color: "#ec4899" },
-    { name: "Spring-boot", level: 70, color: "#22c55e" },
-    { name: "REST APIs", level: 90, color: "#a855f7" },
+    { name: "Node.js", level: 85, color: "#4ade80" },
+    { name: "WebSocket", level: 80, color: "#6366f1" },
+    { name: "GraphQL", level: 70, color: "#f472b6" },
+    { name: "Spring-boot", level: 70, color: "#10b981" },
+    { name: "REST APIs", level: 90, color: "#c084fc" },
     { name: "Golang", level: 80, color: "#06b6d4" },
   ],
   database: [
-    { name: "PostgreSQL", level: 60, color: "#1d4ed8" },
-    { name: "SqLite", level: 80, color: "#16a34a" },
+    { name: "PostgreSQL", level: 60, color: "#3b82f6" },
+    { name: "SqLite", level: 80, color: "#22c55e" },
   ],
   tools: [
-    { name: "VS Code", level: 95, color: "#2563eb" },
-    { name: "Git", level: 70, color: "#ea580c" },
-    { name: "Docker", level: 65, color: "#3b82f6" },
-    { name: "Postman", level: 60, color: "#f97316" },
-    { name: "Figma", level: 15, color: "#a855f7" },
+    { name: "VS Code", level: 95, color: "#3b82f6" },
+    { name: "Git", level: 70, color: "#f97316" },
+    { name: "Docker", level: 65, color: "#0ea5e9" },
+    { name: "Postman", level: 60, color: "#fb923c" },
+    { name: "Figma", level: 15, color: "#a78bfa" },
     { name: "Canva", level: 60, color: "#ec4899" },
   ],
 };
 
+// Animation variants
+const fadeInUpVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const scaleInVariant = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
 const Portfolio = () => {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
   const [activeFilter, setActiveFilter] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -225,6 +283,12 @@ const Portfolio = () => {
 
   return (
     <div className="bg-slate-950 text-white scroll-smooth">
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 origin-left z-[100]"
+        style={{ scaleX }}
+      />
+
       <style>{`
         @keyframes pulse {
           0%, 100% {
@@ -284,7 +348,7 @@ const Portfolio = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <a href="#home" className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <a href="#home" className="text-xl sm:text-2xl font-black bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
               AH
             </a>
 
@@ -354,34 +418,51 @@ const Portfolio = () => {
       <section id="home" className="relative overflow-hidden h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-16">
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950/20 to-cyan-950/20"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.15),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(6,182,212,0.15),transparent_50%)]"></div>
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
 
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full relative z-10">
           {/* Left: Avatar */}
-          <div className="flex-shrink-0 relative">
+          <motion.div
+            className="flex-shrink-0 relative"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-4xl sm:text-5xl font-bold shadow-2xl mx-auto ring-4 ring-emerald-500/50">
+            <motion.div
+              className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-4xl sm:text-5xl font-bold shadow-2xl mx-auto ring-4 ring-emerald-500/50"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               AH
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right: Info */}
-          <div className="text-center lg:text-left flex-1 max-w-2xl">
+          <motion.div
+            className="text-center lg:text-left flex-1 max-w-2xl"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
             {/* Greeting */}
-            <p className="text-slate-400 text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4">
+            <p className="text-slate-300 text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-medium">
               Hi there, I am{" "}
-              <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent font-extrabold text-3xl sm:text-4xl md:text-5xl block sm:inline mt-2 sm:mt-0">
+              <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl block sm:inline mt-2 sm:mt-0 tracking-tight">
                 Amine HABCHI
               </span>
             </p>
 
             {/* Role */}
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-4 sm:mb-6">
+            <p className="text-lg sm:text-xl md:text-2xl text-transparent bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text mb-4 sm:mb-6 font-semibold">
               Full Stack Developer & Creative Problem Solver
             </p>
 
             {/* Description */}
-            <p className="text-sm sm:text-base text-slate-400 mb-4 sm:mb-6 leading-relaxed px-4 sm:px-0">
+            <p className="text-sm sm:text-base md:text-lg text-slate-400 mb-4 sm:mb-6 leading-relaxed px-4 sm:px-0 max-w-xl mx-auto lg:mx-0">
               I develop full-stack web applications using React.js, Next.js,
               Angular, Java, and Go. I build real-time features with WebSockets,
               implement REST APIs, design databases, and create interactive,
@@ -403,62 +484,80 @@ const Portfolio = () => {
             </div>
 
             {/* Buttons & Socials */}
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
-              <a
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <motion.a
                 href="/amine-habchi.pdf"
                 download="Amine-Habchi.pdf"
-                className="group bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-2 font-semibold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/25 w-full sm:w-auto justify-center"
+                className="group relative overflow-hidden bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-2 font-semibold text-sm sm:text-base transition-all duration-300 w-full sm:w-auto justify-center shadow-lg shadow-emerald-500/20"
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(16, 185, 129, 0.35)" }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Download size={18} className="group-hover:animate-bounce" />
-                Download CV
-              </a>
+                <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                <Download size={18} className="group-hover:animate-bounce relative z-10" />
+                <span className="relative z-10">Download CV</span>
+              </motion.a>
 
               <div className="flex flex-wrap gap-3 justify-center">
-                <a
+                <motion.a
                   href="https://github.com/aminehabchi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 sm:p-3 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300 hover:scale-110"
+                  className="p-2.5 sm:p-3 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300"
                   aria-label="GitHub"
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <Github size={18} />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="https://www.linkedin.com/in/aminehabchi/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 sm:p-3 rounded-full bg-slate-800 hover:bg-cyan-600 transition-all duration-300 hover:scale-110"
+                  className="p-2.5 sm:p-3 rounded-full bg-slate-800 hover:bg-cyan-600 transition-all duration-300"
                   aria-label="LinkedIn"
+                  whileHover={{ scale: 1.15, rotate: -5 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <Linkedin size={18} />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="https://leetcode.com/u/amine_habchi01/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 sm:p-3 rounded-full bg-slate-800 hover:bg-teal-500 transition-all duration-300 hover:scale-110"
+                  className="p-2.5 sm:p-3 rounded-full bg-slate-800 hover:bg-teal-500 transition-all duration-300"
                   aria-label="LeetCode"
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <Trophy size={18} />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="mailto:amine.habchi.01@gmail.com"
-                  className="hidden sm:flex items-center gap-1 px-3 py-2 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300 hover:scale-105"
+                  className="hidden sm:flex items-center gap-1 px-3 py-2 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300"
                   aria-label="Email"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <Mail size={16} />
                   <span className="text-xs lg:text-sm">amine.habchi.01@gmail.com</span>
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="mailto:amine.habchi.01@gmail.com"
-                  className="sm:hidden p-2.5 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300 hover:scale-105"
+                  className="sm:hidden p-2.5 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300"
                   aria-label="Email"
+                  whileHover={{ scale: 1.15, rotate: -5 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <Mail size={18} />
-                </a>
+                </motion.a>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Scroll Indicator */}
@@ -472,134 +571,245 @@ const Portfolio = () => {
       {/* Skills Section */}
       <section id="skills" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-cyan-950/10 to-slate-950"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/10 to-slate-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.1),transparent_50%)]"></div>
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
 
         <div className="w-full max-w-7xl relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent px-4">
-            Skills & Technologies
-          </h2>
-          <p className="text-center text-slate-400 mb-12 sm:mb-16 px-4">
-            My technical expertise across different domains
-          </p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUpVariant}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-4 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent px-4 tracking-tight">
+              Skills & Technologies
+            </h2>
+            <p className="text-center text-slate-400 mb-12 sm:mb-16 px-4 text-base sm:text-lg">
+              My technical expertise across different domains
+            </p>
+          </motion.div>
 
           {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-            {Object.entries(skillsData).map(([category, skills]) => (
-              <div
+          <motion.div
+            className="space-y-12 sm:space-y-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            {Object.entries(skillsData).map(([category, skills], index) => {
+              // Define category-specific colors
+              const categoryStyles = {
+                frontend: {
+                  gradient: "from-blue-500/10 via-cyan-500/10 to-blue-500/10",
+                  border: "border-blue-500/30",
+                  textGradient: "from-blue-400 to-cyan-400",
+                  iconBg: "from-blue-500/20 to-cyan-500/20",
+                  iconColor: "text-blue-400"
+                },
+                backend: {
+                  gradient: "from-green-500/10 via-emerald-500/10 to-green-500/10",
+                  border: "border-green-500/30",
+                  textGradient: "from-green-400 to-emerald-400",
+                  iconBg: "from-green-500/20 to-emerald-500/20",
+                  iconColor: "text-green-400"
+                },
+                database: {
+                  gradient: "from-indigo-500/10 via-purple-500/10 to-indigo-500/10",
+                  border: "border-indigo-500/30",
+                  textGradient: "from-indigo-400 to-purple-400",
+                  iconBg: "from-indigo-500/20 to-purple-500/20",
+                  iconColor: "text-indigo-400"
+                },
+                tools: {
+                  gradient: "from-pink-500/10 via-rose-500/10 to-pink-500/10",
+                  border: "border-pink-500/30",
+                  textGradient: "from-pink-400 to-rose-400",
+                  iconBg: "from-pink-500/20 to-rose-500/20",
+                  iconColor: "text-pink-400"
+                }
+              };
+
+              const style = categoryStyles[category] || categoryStyles.frontend;
+              const Icon = category === 'frontend' ? Globe :
+                          category === 'backend' ? Database :
+                          category === 'database' ? Database : Wrench;
+
+              return (
+              <motion.div
                 key={category}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-300"
+                className={`relative bg-gradient-to-r ${style.gradient} backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-10 border ${style.border} overflow-hidden`}
+                variants={fadeInUpVariant}
+                whileHover={{ scale: 1.01 }}
               >
+                {/* Decorative Background Elements */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
                 {/* Category Header */}
-                <div className="flex items-center gap-3 mb-6">
-                  {category === 'frontend' && (
-                    <div className="p-3 bg-cyan-500/10 rounded-lg">
-                      <Globe className="w-6 h-6 text-cyan-400" />
-                    </div>
-                  )}
-                  {category === 'backend' && (
-                    <div className="p-3 bg-emerald-500/10 rounded-lg">
-                      <Database className="w-6 h-6 text-emerald-400" />
-                    </div>
-                  )}
-                  {category === 'database' && (
-                    <div className="p-3 bg-teal-500/10 rounded-lg">
-                      <Database className="w-6 h-6 text-teal-400" />
-                    </div>
-                  )}
-                  {category === 'tools' && (
-                    <div className="p-3 bg-cyan-500/10 rounded-lg">
-                      <Wrench className="w-6 h-6 text-cyan-400" />
-                    </div>
-                  )}
-                  <h3 className="text-xl sm:text-2xl font-bold text-white capitalize">
+                <div className="relative flex items-center gap-4 mb-8 pb-6 border-b border-white/10">
+                  <div className={`p-4 bg-gradient-to-br ${style.iconBg} rounded-2xl border ${style.border} shadow-lg`}>
+                    <Icon className={`w-7 h-7 sm:w-8 sm:h-8 ${style.iconColor}`} />
+                  </div>
+                  <h3 className={`text-2xl sm:text-3xl md:text-4xl font-black text-transparent bg-gradient-to-r ${style.textGradient} bg-clip-text capitalize tracking-tight`}>
                     {category}
                   </h3>
                 </div>
 
-                {/* Skills List */}
-                <div className="space-y-4">
-                  {skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="group relative"
+                {/* Skills Grid */}
+                <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skillIndex}
+                      className="group"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: skillIndex * 0.05 }}
                     >
-                      {/* Skill Name */}
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-slate-200 font-medium text-sm sm:text-base">
-                          {skill.name}
-                        </span>
-                      </div>
-
-                      {/* Progress Bar Background */}
-                      <div className="relative h-2 bg-slate-700/50 rounded-full overflow-hidden">
-                        {/* Animated Progress Bar */}
-                        <div
-                          className="absolute top-0 left-0 h-full rounded-full transition-all duration-1000 ease-out"
-                          style={{
-                            width: `${skill.level}%`,
-                            background: `linear-gradient(90deg, ${skill.color}, ${skill.color}dd)`,
-                            boxShadow: `0 0 10px ${skill.color}66`,
-                          }}
-                        >
-                          {/* Shimmer Effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                      {/* Skill Card */}
+                      <div className="relative bg-slate-800/60 backdrop-blur-sm rounded-2xl p-5 border border-slate-700/50 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-white/5 hover:-translate-y-1">
+                        {/* Skill Name and Level */}
+                        <div className="flex items-start justify-between mb-3">
+                          <span className="text-slate-100 font-bold text-base sm:text-lg">
+                            {skill.name}
+                          </span>
+                          <span
+                            className="text-sm font-black px-2 py-0.5 rounded-lg"
+                            style={{
+                              color: skill.color,
+                              backgroundColor: `${skill.color}20`
+                            }}
+                          >
+                            {skill.level}%
+                          </span>
                         </div>
 
-                        {/* Glow Effect on Hover */}
-                        <div
-                          className="absolute top-0 left-0 h-full rounded-full opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300"
-                          style={{
-                            width: `${skill.level}%`,
-                            backgroundColor: skill.color,
-                          }}
-                        ></div>
+                        {/* Circular Progress */}
+                        <div className="relative w-full aspect-square max-w-[120px] mx-auto">
+                          <svg className="w-full h-full -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
+                            {/* Background Circle */}
+                            <circle
+                              cx="50"
+                              cy="50"
+                              r="40"
+                              fill="none"
+                              stroke="rgba(71, 85, 105, 0.3)"
+                              strokeWidth="8"
+                            />
+                            {/* Progress Circle */}
+                            <motion.circle
+                              cx="50"
+                              cy="50"
+                              r="40"
+                              fill="none"
+                              stroke={skill.color}
+                              strokeWidth="8"
+                              strokeLinecap="round"
+                              strokeDasharray={`${2 * Math.PI * 40}`}
+                              initial={{ strokeDashoffset: 2 * Math.PI * 40 }}
+                              whileInView={{
+                                strokeDashoffset: 2 * Math.PI * 40 * (1 - skill.level / 100),
+                              }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 1.5, ease: "easeOut", delay: skillIndex * 0.05 }}
+                              style={{
+                                filter: `drop-shadow(0 0 6px ${skill.color}66)`
+                              }}
+                            />
+                          </svg>
+                          {/* Center Dot */}
+                          <div
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
+                            style={{ backgroundColor: skill.color }}
+                          ></div>
+                        </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
+              </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 
       {/* Projects Section */}
       <section id="projects" className="relative min-h-screen py-16 sm:py-20 px-4 sm:px-6 flex items-center overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950/10 to-slate-950"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-violet-950/10 to-slate-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.1),transparent_50%)]"></div>
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent px-4">
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-12 sm:mb-16 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent px-4 tracking-tight"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUpVariant}
+          >
             Projects
-          </h2>
+          </motion.h2>
 
           {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12 px-2">
+          <motion.div
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12 px-2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
             {filterCategories.map((category) => {
-              const Icon = category.icon;
+              const isActive = activeFilter === category.key;
               return (
-                <button
+                <motion.button
                   key={category.key}
                   onClick={() => setActiveFilter(category.key)}
-                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full font-medium text-xs sm:text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${activeFilter === category.key
-                      ? "bg-gradient-to-r from-emerald-600 to-cyan-600 text-white shadow-lg shadow-emerald-500/25"
-                      : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
-                    }`}
+                  className={`px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full font-bold text-xs sm:text-sm md:text-base transition-all duration-300 tracking-wide ${
+                    isActive
+                      ? `bg-gradient-to-r ${category.gradient} text-white shadow-lg shadow-current/30 ring-2 ring-white/20`
+                      : "bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white hover:shadow-md"
+                  }`}
+                  variants={scaleInVariant}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Icon size={14} className="sm:hidden" />
-                  <Icon size={16} className="hidden sm:block" />
-                  <span className="hidden xs:inline">{category.label}</span>
-                </button>
+                  {category.label}
+                </motion.button>
               );
             })}
-          </div>
+          </motion.div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredProjects.map((project) => (
-              <div
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+          >
+            {filteredProjects.map((project, index) => {
+              // Define category-specific colors
+              const categoryColors = {
+                lowlevel: { border: "border-violet-700/50", hoverBorder: "hover:border-violet-500/70", shadow: "hover:shadow-violet-500/20" },
+                frontend: { border: "border-blue-700/50", hoverBorder: "hover:border-blue-500/70", shadow: "hover:shadow-blue-500/20" },
+                backend: { border: "border-green-700/50", hoverBorder: "hover:border-green-500/70", shadow: "hover:shadow-green-500/20" },
+                fullstack: { border: "border-orange-700/50", hoverBorder: "hover:border-orange-500/70", shadow: "hover:shadow-orange-500/20" },
+                tools: { border: "border-pink-700/50", hoverBorder: "hover:border-pink-500/70", shadow: "hover:shadow-pink-500/20" },
+              };
+              const colors = categoryColors[project.category] || categoryColors.frontend;
+
+              return (
+              <motion.div
                 key={project.id}
-                className="group bg-slate-800 rounded-lg sm:rounded-xl overflow-hidden border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10"
+                className={`group bg-slate-800/90 backdrop-blur-sm rounded-lg sm:rounded-xl overflow-hidden border ${colors.border} ${colors.hoverBorder} transition-all duration-300 hover:shadow-2xl ${colors.shadow}`}
+                variants={fadeInUpVariant}
+                whileHover={{ y: -8, scale: 1.02 }}
               >
                 <div className="relative overflow-hidden h-48">
                   {project.image && project.image !== "none" ? (
@@ -609,13 +819,25 @@ const Portfolio = () => {
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 relative overflow-hidden">
+                    <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${
+                      project.category === 'lowlevel' ? 'from-violet-900/40 via-slate-800 to-purple-900/40' :
+                      project.category === 'frontend' ? 'from-blue-900/40 via-slate-800 to-cyan-900/40' :
+                      project.category === 'backend' ? 'from-green-900/40 via-slate-800 to-emerald-900/40' :
+                      project.category === 'fullstack' ? 'from-orange-900/40 via-slate-800 to-red-900/40' :
+                      'from-pink-900/40 via-slate-800 to-rose-900/40'
+                    } relative overflow-hidden`}>
                       {/* Animated background effect */}
                       <div className="absolute inset-0 opacity-20">
                         {[...Array(20)].map((_, i) => (
                           <div
                             key={i}
-                            className="absolute bg-emerald-500/30"
+                            className={`absolute ${
+                              project.category === 'lowlevel' ? 'bg-violet-500/30' :
+                              project.category === 'frontend' ? 'bg-blue-500/30' :
+                              project.category === 'backend' ? 'bg-green-500/30' :
+                              project.category === 'fullstack' ? 'bg-orange-500/30' :
+                              'bg-pink-500/30'
+                            }`}
                             style={{
                               width: `${Math.random() * 3}px`,
                               height: `${Math.random() * 100}%`,
@@ -627,48 +849,70 @@ const Portfolio = () => {
                         ))}
                       </div>
 
-                      {/* Project icon based on category */}
-                      <div className="relative z-10 text-center">
+                      {/* Project category label */}
+                      <div className="relative z-10 text-center px-4">
                         {project.category === "lowlevel" && (
-                          <div className="space-y-2">
-                            <Code size={40} className="sm:w-12 sm:h-12 text-emerald-400 mx-auto" />
+                          <div className="inline-block">
+                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-violet-400 to-purple-500 bg-clip-text mb-2">
+                              LOW LEVEL
+                            </div>
                             <div className="flex gap-2 justify-center">
-                              <div className="w-12 sm:w-16 h-1 bg-cyan-500 rounded"></div>
-                              <div className="w-8 sm:w-12 h-1 bg-emerald-500 rounded"></div>
-                              <div className="w-6 sm:w-8 h-1 bg-teal-500 rounded"></div>
+                              <div className="w-12 sm:w-16 h-1 bg-violet-500 rounded"></div>
+                              <div className="w-8 sm:w-12 h-1 bg-purple-500 rounded"></div>
+                              <div className="w-6 sm:w-8 h-1 bg-fuchsia-500 rounded"></div>
                             </div>
                           </div>
                         )}
                         {project.category === "frontend" && (
-                          <div className="space-y-2">
-                            <Globe size={40} className="sm:w-12 sm:h-12 text-cyan-400 mx-auto" />
+                          <div className="inline-block">
+                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text mb-2">
+                              FRONTEND
+                            </div>
                             <div className="flex gap-1 justify-center">
-                              <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce"></div>
+                              <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"></div>
                               <div
-                                className="w-3 h-3 bg-emerald-500 rounded-full animate-bounce"
+                                className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce"
                                 style={{ animationDelay: "0.1s" }}
                               ></div>
                               <div
-                                className="w-3 h-3 bg-teal-500 rounded-full animate-bounce"
+                                className="w-3 h-3 bg-sky-500 rounded-full animate-bounce"
                                 style={{ animationDelay: "0.2s" }}
                               ></div>
                             </div>
                           </div>
                         )}
                         {project.category === "backend" && (
-                          <Database size={40} className="sm:w-12 sm:h-12 text-teal-400 mx-auto" />
+                          <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text">
+                            BACKEND
+                          </div>
                         )}
                         {project.category === "fullstack" && (
-                          <Layers size={40} className="sm:w-12 sm:h-12 text-emerald-400 mx-auto" />
+                          <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text">
+                            FULL STACK
+                          </div>
                         )}
                         {project.category === "tools" && (
-                          <Wrench size={40} className="sm:w-12 sm:h-12 text-cyan-400 mx-auto" />
+                          <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-pink-400 to-rose-500 bg-clip-text">
+                            TOOLS
+                          </div>
                         )}
                       </div>
 
                       {/* Corner decoration */}
-                      <div className="absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br from-emerald-500/20 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-tr from-cyan-500/20 to-transparent"></div>
+                      <div className={`absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br ${
+                        project.category === 'lowlevel' ? 'from-violet-500/20' :
+                        project.category === 'frontend' ? 'from-blue-500/20' :
+                        project.category === 'backend' ? 'from-green-500/20' :
+                        project.category === 'fullstack' ? 'from-orange-500/20' :
+                        'from-pink-500/20'
+                      } to-transparent`}></div>
+                      <div className={`absolute bottom-0 left-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-tr ${
+                        project.category === 'lowlevel' ? 'from-purple-500/20' :
+                        project.category === 'frontend' ? 'from-cyan-500/20' :
+                        project.category === 'backend' ? 'from-emerald-500/20' :
+                        project.category === 'fullstack' ? 'from-red-500/20' :
+                        'from-rose-500/20'
+                      } to-transparent`}></div>
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
@@ -717,9 +961,10 @@ const Portfolio = () => {
                     ))}
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              </motion.div>
+              );
+            })}
+          </motion.div>
 
           {filteredProjects.length === 0 && (
             <div className="text-center py-12">
@@ -734,65 +979,101 @@ const Portfolio = () => {
       {/* Footer */}
       <footer id="contact" className="relative bg-slate-800/50 py-12 sm:py-16 px-4 sm:px-6 border-t border-slate-700 min-h-[50vh] flex items-center overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-cyan-950/10 to-slate-950"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950/10 to-slate-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.1),transparent_50%)]"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl animate-pulse"></div>
 
         <div className="max-w-4xl mx-auto text-center w-full relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-            Let's Connect
-          </h2>
-          <p className="text-slate-400 mb-6 sm:mb-8 text-base sm:text-lg px-4">
-            Let's build something amazing together.
-          </p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUpVariant}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 sm:mb-8 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
+              Let's Connect
+            </h2>
+            <p className="text-slate-300 mb-6 sm:mb-8 text-base sm:text-lg md:text-xl px-4 font-medium">
+              Let's build something amazing together.
+            </p>
+          </motion.div>
 
           {/* CV Link */}
-          <div className="mb-8">
-            <a
+          <motion.div
+            className="mb-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={scaleInVariant}
+          >
+            <motion.a
               href="https://cv.emage-me.com/me/amine-habchi-R5rIw9qyVmANeH9EkHyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 rounded-full text-white font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/25"
+              className="group relative overflow-hidden inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 rounded-full text-white font-semibold transition-all duration-300 shadow-lg shadow-emerald-500/20"
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(16, 185, 129, 0.35)" }}
+              whileTap={{ scale: 0.95 }}
             >
-              <ExternalLink size={20} />
-              <span>View My Interactive CV</span>
-            </a>
-          </div>
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+              <ExternalLink size={20} className="relative z-10" />
+              <span className="relative z-10">View My Interactive CV</span>
+            </motion.a>
+          </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8">
-            <a
+          <motion.div
+            className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <motion.a
               href="https://github.com/aminehabchi"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300 shadow-lg"
               aria-label="GitHub"
+              variants={scaleInVariant}
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Github size={20} className="sm:w-6 sm:h-6" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://www.linkedin.com/in/amine-habchi-1a9aa4237/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-cyan-600 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-cyan-600 transition-all duration-300 shadow-lg"
               aria-label="LinkedIn"
+              variants={scaleInVariant}
+              whileHover={{ scale: 1.15, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Linkedin size={20} className="sm:w-6 sm:h-6" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://leetcode.com/u/amine_habchi01/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-teal-500 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-teal-500 transition-all duration-300 shadow-lg"
               aria-label="LeetCode"
+              variants={scaleInVariant}
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Trophy size={20} className="sm:w-6 sm:h-6" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="mailto:amine.habchi.01@gmail.com"
-              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="p-3 sm:p-4 rounded-full bg-slate-800 hover:bg-emerald-600 transition-all duration-300 shadow-lg"
               aria-label="Email"
+              variants={scaleInVariant}
+              whileHover={{ scale: 1.15, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Mail size={20} className="sm:w-6 sm:h-6" />
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
           <p className="text-slate-500 text-xs sm:text-sm px-4">
             © 2025 Amine HABCHI. All rights reserved.
           </p>
