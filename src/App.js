@@ -32,13 +32,13 @@ export const projects = [
   },
   {
     id: 2,
-    title: "SeniorifyUI",
+    title: "Local-Server",
     description:
-      "a revolutionary Advanced Style Prompt Builder designed to transform any junior front-end developer into a UI expert.",
-    image: "/seniorifyui.png",
-    tags: ["React", "hackathon", "ai"],
-    category: "tools",
-    github: "https://github.com/aminehabchi/SeniorifyUI",
+      "A lightweight, HTTP/1.1-compliant web server implementation in Java built from scratch using non-blocking I/O. This project demonstrates understanding of network protocols, socket programming, and event-driven architecture without relying on established frameworks.",
+    image: "none",
+    tags: ["Java", "http", "non-blocking I/O", "one-thread", "virtual-hosts", "event - driven"],
+    category: "lowlevel",
+    github: "https://github.com/aminehabchi/Local-Server",
     live: "#",
   },
   {
@@ -193,6 +193,17 @@ export const projects = [
     category: "fullstack",
     github: "https://github.com/aminehabchi/IdeaThon",
     live: "https://idea-thon.vercel.app/",
+  },
+  {
+    id: 17,
+    title: "SeniorifyUI",
+    description:
+      "a revolutionary Advanced Style Prompt Builder designed to transform any junior front-end developer into a UI expert.",
+    image: "/seniorifyui.png",
+    tags: ["React", "hackathon", "ai"],
+    category: "tools",
+    github: "https://github.com/aminehabchi/SeniorifyUI",
+    live: "#",
   },
 ];
 
@@ -440,7 +451,7 @@ const Portfolio = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.15),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(59,130,246,0.12),transparent_50%)]"></div>
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-amber-500/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
 
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full relative z-10">
           {/* Left: Avatar */}
@@ -593,7 +604,7 @@ const Portfolio = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#1e293b] to-[#0f172a]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(245,158,11,0.1),transparent_50%)]"></div>
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-600/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-700/8 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-700/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
 
         <div className="w-full max-w-7xl relative z-10">
           <motion.div
@@ -653,103 +664,103 @@ const Portfolio = () => {
 
               const style = categoryStyles[category] || categoryStyles.frontend;
               const Icon = category === 'frontend' ? Globe :
-                          category === 'backend' ? Database :
-                          category === 'database' ? Database : Wrench;
+                category === 'backend' ? Database :
+                  category === 'database' ? Database : Wrench;
 
               return (
-              <motion.div
-                key={category}
-                className={`relative bg-gradient-to-r ${style.gradient} backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-10 border ${style.border} overflow-hidden`}
-                variants={fadeInUpVariant}
-                whileHover={{ scale: 1.01 }}
-              >
-                {/* Decorative Background Elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                <motion.div
+                  key={category}
+                  className={`relative bg-gradient-to-r ${style.gradient} backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-10 border ${style.border} overflow-hidden`}
+                  variants={fadeInUpVariant}
+                  whileHover={{ scale: 1.01 }}
+                >
+                  {/* Decorative Background Elements */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-1/2 -translate-x-1/2"></div>
 
-                {/* Category Header */}
-                <div className="relative flex items-center gap-4 mb-8 pb-6 border-b border-white/10">
-                  <div className={`p-4 bg-gradient-to-br ${style.iconBg} rounded-2xl border ${style.border} shadow-lg`}>
-                    <Icon className={`w-7 h-7 sm:w-8 sm:h-8 ${style.iconColor}`} />
+                  {/* Category Header */}
+                  <div className="relative flex items-center gap-4 mb-8 pb-6 border-b border-white/10">
+                    <div className={`p-4 bg-gradient-to-br ${style.iconBg} rounded-2xl border ${style.border} shadow-lg`}>
+                      <Icon className={`w-7 h-7 sm:w-8 sm:h-8 ${style.iconColor}`} />
+                    </div>
+                    <h3 className={`text-2xl sm:text-3xl md:text-4xl font-black text-transparent bg-gradient-to-r ${style.textGradient} bg-clip-text capitalize tracking-tight`}>
+                      {category}
+                    </h3>
                   </div>
-                  <h3 className={`text-2xl sm:text-3xl md:text-4xl font-black text-transparent bg-gradient-to-r ${style.textGradient} bg-clip-text capitalize tracking-tight`}>
-                    {category}
-                  </h3>
-                </div>
 
-                {/* Skills Grid */}
-                <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skillIndex}
-                      className="group"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: skillIndex * 0.05 }}
-                    >
-                      {/* Skill Card */}
-                      <div className="relative bg-slate-800/60 backdrop-blur-sm rounded-2xl p-5 border border-slate-700/50 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-white/5 hover:-translate-y-1">
-                        {/* Skill Name and Level */}
-                        <div className="flex items-start justify-between mb-3">
-                          <span className="text-slate-100 font-bold text-base sm:text-lg">
-                            {skill.name}
-                          </span>
-                          <span
-                            className="text-sm font-black px-2 py-0.5 rounded-lg"
-                            style={{
-                              color: skill.color,
-                              backgroundColor: `${skill.color}20`
-                            }}
-                          >
-                            {skill.level}%
-                          </span>
-                        </div>
-
-                        {/* Circular Progress */}
-                        <div className="relative w-full aspect-square max-w-[120px] mx-auto">
-                          <svg className="w-full h-full -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
-                            {/* Background Circle */}
-                            <circle
-                              cx="50"
-                              cy="50"
-                              r="40"
-                              fill="none"
-                              stroke="rgba(71, 85, 105, 0.3)"
-                              strokeWidth="8"
-                            />
-                            {/* Progress Circle */}
-                            <motion.circle
-                              cx="50"
-                              cy="50"
-                              r="40"
-                              fill="none"
-                              stroke={skill.color}
-                              strokeWidth="8"
-                              strokeLinecap="round"
-                              strokeDasharray={`${2 * Math.PI * 40}`}
-                              initial={{ strokeDashoffset: 2 * Math.PI * 40 }}
-                              whileInView={{
-                                strokeDashoffset: 2 * Math.PI * 40 * (1 - skill.level / 100),
-                              }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 1.5, ease: "easeOut", delay: skillIndex * 0.05 }}
+                  {/* Skills Grid */}
+                  <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {skills.map((skill, skillIndex) => (
+                      <motion.div
+                        key={skillIndex}
+                        className="group"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: skillIndex * 0.05 }}
+                      >
+                        {/* Skill Card */}
+                        <div className="relative bg-slate-800/60 backdrop-blur-sm rounded-2xl p-5 border border-slate-700/50 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-white/5 hover:-translate-y-1">
+                          {/* Skill Name and Level */}
+                          <div className="flex items-start justify-between mb-3">
+                            <span className="text-slate-100 font-bold text-base sm:text-lg">
+                              {skill.name}
+                            </span>
+                            <span
+                              className="text-sm font-black px-2 py-0.5 rounded-lg"
                               style={{
-                                filter: `drop-shadow(0 0 6px ${skill.color}66)`
+                                color: skill.color,
+                                backgroundColor: `${skill.color}20`
                               }}
-                            />
-                          </svg>
-                          {/* Center Dot */}
-                          <div
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
-                            style={{ backgroundColor: skill.color }}
-                          ></div>
+                            >
+                              {skill.level}%
+                            </span>
+                          </div>
+
+                          {/* Circular Progress */}
+                          <div className="relative w-full aspect-square max-w-[120px] mx-auto">
+                            <svg className="w-full h-full -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
+                              {/* Background Circle */}
+                              <circle
+                                cx="50"
+                                cy="50"
+                                r="40"
+                                fill="none"
+                                stroke="rgba(71, 85, 105, 0.3)"
+                                strokeWidth="8"
+                              />
+                              {/* Progress Circle */}
+                              <motion.circle
+                                cx="50"
+                                cy="50"
+                                r="40"
+                                fill="none"
+                                stroke={skill.color}
+                                strokeWidth="8"
+                                strokeLinecap="round"
+                                strokeDasharray={`${2 * Math.PI * 40}`}
+                                initial={{ strokeDashoffset: 2 * Math.PI * 40 }}
+                                whileInView={{
+                                  strokeDashoffset: 2 * Math.PI * 40 * (1 - skill.level / 100),
+                                }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.5, ease: "easeOut", delay: skillIndex * 0.05 }}
+                                style={{
+                                  filter: `drop-shadow(0 0 6px ${skill.color}66)`
+                                }}
+                              />
+                            </svg>
+                            {/* Center Dot */}
+                            <div
+                              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
+                              style={{ backgroundColor: skill.color }}
+                            ></div>
+                          </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
               );
             })}
           </motion.div>
@@ -762,7 +773,7 @@ const Portfolio = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.1),transparent_50%)]"></div>
         <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-amber-600/8 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-amber-600/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <motion.div
@@ -793,11 +804,10 @@ const Portfolio = () => {
                 <motion.button
                   key={category.key}
                   onClick={() => setActiveFilter(category.key)}
-                  className={`px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full font-bold text-xs sm:text-sm md:text-base transition-all duration-300 tracking-wide ${
-                    isActive
-                      ? `bg-gradient-to-r ${category.gradient} text-white shadow-lg shadow-current/30 ring-2 ring-white/20`
-                      : "bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white hover:shadow-md"
-                  }`}
+                  className={`px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full font-bold text-xs sm:text-sm md:text-base transition-all duration-300 tracking-wide ${isActive
+                    ? `bg-gradient-to-r ${category.gradient} text-white shadow-lg shadow-current/30 ring-2 ring-white/20`
+                    : "bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white hover:shadow-md"
+                    }`}
                   variants={scaleInVariant}
                   whileHover={{ scale: 1.08, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -863,184 +873,180 @@ const Portfolio = () => {
               const colors = categoryColors[project.category] || categoryColors.frontend;
 
               return (
-              <motion.div
-                key={project.id}
-                className={`group relative bg-slate-800/90 backdrop-blur-sm rounded-2xl overflow-hidden border ${colors.border} ${colors.hoverBorder} transition-all duration-500 hover:shadow-2xl ${colors.shadow}`}
-                variants={fadeInUpVariant}
-                whileHover={{ y: -10, scale: 1.02 }}
-              >
-                {/* Gradient overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
-                <div className="relative overflow-hidden h-48">
-                  {project.image && project.image !== "none" ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${
-                      project.category === 'lowlevel' ? 'from-blue-900/40 via-slate-900 to-indigo-900/40' :
-                      project.category === 'frontend' ? 'from-amber-900/40 via-slate-900 to-yellow-900/40' :
-                      project.category === 'backend' ? 'from-blue-900/40 via-slate-900 to-sky-900/40' :
-                      project.category === 'fullstack' ? 'from-amber-900/40 via-slate-900 to-orange-900/40' :
-                      'from-indigo-900/40 via-slate-900 to-blue-900/40'
-                    } relative overflow-hidden`}>
-                      {/* Animated background effect */}
-                      <div className="absolute inset-0 opacity-20">
-                        {[...Array(20)].map((_, i) => (
-                          <div
-                            key={i}
-                            className={`absolute ${
-                              project.category === 'lowlevel' ? 'bg-blue-500/30' :
-                              project.category === 'frontend' ? 'bg-amber-500/30' :
-                              project.category === 'backend' ? 'bg-blue-500/30' :
-                              project.category === 'fullstack' ? 'bg-amber-500/30' :
-                              'bg-indigo-500/30'
-                            }`}
-                            style={{
-                              width: `${Math.random() * 3}px`,
-                              height: `${Math.random() * 100}%`,
-                              left: `${Math.random() * 100}%`,
-                              animation: `pulse ${2 + Math.random() * 3}s ease-in-out infinite`,
-                              animationDelay: `${Math.random() * 2}s`,
-                            }}
-                          />
-                        ))}
+                <motion.div
+                  key={project.id}
+                  className={`group relative bg-slate-800/90 backdrop-blur-sm rounded-2xl overflow-hidden border ${colors.border} ${colors.hoverBorder} transition-all duration-500 hover:shadow-2xl ${colors.shadow}`}
+                  variants={fadeInUpVariant}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                >
+                  {/* Gradient overlay on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
+                  <div className="relative overflow-hidden h-48">
+                    {project.image && project.image !== "none" ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${project.category === 'lowlevel' ? 'from-blue-900/40 via-slate-900 to-indigo-900/40' :
+                        project.category === 'frontend' ? 'from-amber-900/40 via-slate-900 to-yellow-900/40' :
+                          project.category === 'backend' ? 'from-blue-900/40 via-slate-900 to-sky-900/40' :
+                            project.category === 'fullstack' ? 'from-amber-900/40 via-slate-900 to-orange-900/40' :
+                              'from-indigo-900/40 via-slate-900 to-blue-900/40'
+                        } relative overflow-hidden`}>
+                        {/* Animated background effect */}
+                        <div className="absolute inset-0 opacity-20">
+                          {[...Array(20)].map((_, i) => (
+                            <div
+                              key={i}
+                              className={`absolute ${project.category === 'lowlevel' ? 'bg-blue-500/30' :
+                                project.category === 'frontend' ? 'bg-amber-500/30' :
+                                  project.category === 'backend' ? 'bg-blue-500/30' :
+                                    project.category === 'fullstack' ? 'bg-amber-500/30' :
+                                      'bg-indigo-500/30'
+                                }`}
+                              style={{
+                                width: `${Math.random() * 3}px`,
+                                height: `${Math.random() * 100}%`,
+                                left: `${Math.random() * 100}%`,
+                                animation: `pulse ${2 + Math.random() * 3}s ease-in-out infinite`,
+                                animationDelay: `${Math.random() * 2}s`,
+                              }}
+                            />
+                          ))}
+                        </div>
+
+                        {/* Project category label */}
+                        <div className="relative z-10 text-center px-4">
+                          {project.category === "lowlevel" && (
+                            <div className="inline-block">
+                              <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text mb-2">
+                                LOW LEVEL
+                              </div>
+                              <div className="flex gap-2 justify-center">
+                                <div className="w-12 sm:w-16 h-1 bg-blue-500 rounded"></div>
+                                <div className="w-8 sm:w-12 h-1 bg-sky-500 rounded"></div>
+                                <div className="w-6 sm:w-8 h-1 bg-indigo-500 rounded"></div>
+                              </div>
+                            </div>
+                          )}
+                          {project.category === "frontend" && (
+                            <div className="inline-block">
+                              <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text mb-2">
+                                FRONTEND
+                              </div>
+                              <div className="flex gap-1 justify-center">
+                                <div className="w-3 h-3 bg-amber-500 rounded-full animate-bounce"></div>
+                                <div
+                                  className="w-3 h-3 bg-yellow-500 rounded-full animate-bounce"
+                                  style={{ animationDelay: "0.1s" }}
+                                ></div>
+                                <div
+                                  className="w-3 h-3 bg-orange-500 rounded-full animate-bounce"
+                                  style={{ animationDelay: "0.2s" }}
+                                ></div>
+                              </div>
+                            </div>
+                          )}
+                          {project.category === "backend" && (
+                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text">
+                              BACKEND
+                            </div>
+                          )}
+                          {project.category === "fullstack" && (
+                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 bg-clip-text">
+                              FULL STACK
+                            </div>
+                          )}
+                          {project.category === "tools" && (
+                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-indigo-400 to-blue-500 bg-clip-text">
+                              TOOLS
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Corner decoration */}
+                        <div className={`absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br ${project.category === 'lowlevel' ? 'from-blue-500/20' :
+                          project.category === 'frontend' ? 'from-amber-500/20' :
+                            project.category === 'backend' ? 'from-blue-500/20' :
+                              project.category === 'fullstack' ? 'from-amber-500/20' :
+                                'from-indigo-500/20'
+                          } to-transparent`}></div>
+                        <div className={`absolute bottom-0 left-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-tr ${project.category === 'lowlevel' ? 'from-sky-500/20' :
+                          project.category === 'frontend' ? 'from-yellow-500/20' :
+                            project.category === 'backend' ? 'from-indigo-500/20' :
+                              project.category === 'fullstack' ? 'from-orange-500/20' :
+                                'from-blue-500/20'
+                          } to-transparent`}></div>
                       </div>
-
-                      {/* Project category label */}
-                      <div className="relative z-10 text-center px-4">
-                        {project.category === "lowlevel" && (
-                          <div className="inline-block">
-                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text mb-2">
-                              LOW LEVEL
-                            </div>
-                            <div className="flex gap-2 justify-center">
-                              <div className="w-12 sm:w-16 h-1 bg-blue-500 rounded"></div>
-                              <div className="w-8 sm:w-12 h-1 bg-sky-500 rounded"></div>
-                              <div className="w-6 sm:w-8 h-1 bg-indigo-500 rounded"></div>
-                            </div>
-                          </div>
-                        )}
-                        {project.category === "frontend" && (
-                          <div className="inline-block">
-                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text mb-2">
-                              FRONTEND
-                            </div>
-                            <div className="flex gap-1 justify-center">
-                              <div className="w-3 h-3 bg-amber-500 rounded-full animate-bounce"></div>
-                              <div
-                                className="w-3 h-3 bg-yellow-500 rounded-full animate-bounce"
-                                style={{ animationDelay: "0.1s" }}
-                              ></div>
-                              <div
-                                className="w-3 h-3 bg-orange-500 rounded-full animate-bounce"
-                                style={{ animationDelay: "0.2s" }}
-                              ></div>
-                            </div>
-                          </div>
-                        )}
-                        {project.category === "backend" && (
-                          <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text">
-                            BACKEND
-                          </div>
-                        )}
-                        {project.category === "fullstack" && (
-                          <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 bg-clip-text">
-                            FULL STACK
-                          </div>
-                        )}
-                        {project.category === "tools" && (
-                          <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-indigo-400 to-blue-500 bg-clip-text">
-                            TOOLS
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Corner decoration */}
-                      <div className={`absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br ${
-                        project.category === 'lowlevel' ? 'from-blue-500/20' :
-                        project.category === 'frontend' ? 'from-amber-500/20' :
-                        project.category === 'backend' ? 'from-blue-500/20' :
-                        project.category === 'fullstack' ? 'from-amber-500/20' :
-                        'from-indigo-500/20'
-                      } to-transparent`}></div>
-                      <div className={`absolute bottom-0 left-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-tr ${
-                        project.category === 'lowlevel' ? 'from-sky-500/20' :
-                        project.category === 'frontend' ? 'from-yellow-500/20' :
-                        project.category === 'backend' ? 'from-indigo-500/20' :
-                        project.category === 'fullstack' ? 'from-orange-500/20' :
-                        'from-blue-500/20'
-                      } to-transparent`}></div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Card Content */}
-                <div className="relative p-5 sm:p-6 flex flex-col h-full">
-                  {/* Category Badge */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`px-3 py-1 text-xs font-bold ${colors.badgeBg} ${colors.badgeText} rounded-full uppercase tracking-wider`}>
-                      {project.category.replace('lowlevel', 'low level').replace('fullstack', 'full stack')}
-                    </span>
-                    {/* Links */}
-                    <div className="flex gap-2">
-                      {project.github && project.github !== "#" && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-1.5 bg-slate-700/50 rounded-lg hover:bg-emerald-600 transition-all duration-300 hover:scale-110"
-                          aria-label="View on GitHub"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Github size={14} />
-                        </a>
-                      )}
-                      {project.live && project.live !== "#" && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-1.5 bg-slate-700/50 rounded-lg hover:bg-cyan-600 transition-all duration-300 hover:scale-110"
-                          aria-label="View live demo"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalLink size={14} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-black mb-3 text-slate-100 group-hover:text-white transition-colors tracking-tight">
-                    {project.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-400 mb-4 leading-relaxed text-sm sm:text-base line-clamp-3 flex-grow">
-                    {project.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-700/50">
-                    {project.tags.slice(0, 4).map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-2.5 py-1 text-[10px] sm:text-xs font-semibold bg-slate-700/70 text-slate-300 rounded-lg group-hover:bg-slate-600 transition-colors"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {project.tags.length > 4 && (
-                      <span className="px-2.5 py-1 text-[10px] sm:text-xs font-semibold bg-slate-700/70 text-slate-400 rounded-lg">
-                        +{project.tags.length - 4}
-                      </span>
                     )}
                   </div>
-                </div>
-              </motion.div>
+
+                  {/* Card Content */}
+                  <div className="relative p-5 sm:p-6 flex flex-col h-full">
+                    {/* Category Badge */}
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`px-3 py-1 text-xs font-bold ${colors.badgeBg} ${colors.badgeText} rounded-full uppercase tracking-wider`}>
+                        {project.category.replace('lowlevel', 'low level').replace('fullstack', 'full stack')}
+                      </span>
+                      {/* Links */}
+                      <div className="flex gap-2">
+                        {project.github && project.github !== "#" && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 bg-slate-700/50 rounded-lg hover:bg-emerald-600 transition-all duration-300 hover:scale-110"
+                            aria-label="View on GitHub"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Github size={14} />
+                          </a>
+                        )}
+                        {project.live && project.live !== "#" && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 bg-slate-700/50 rounded-lg hover:bg-cyan-600 transition-all duration-300 hover:scale-110"
+                            aria-label="View live demo"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink size={14} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl sm:text-2xl font-black mb-3 text-slate-100 group-hover:text-white transition-colors tracking-tight">
+                      {project.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-slate-400 mb-4 leading-relaxed text-sm sm:text-base line-clamp-3 flex-grow">
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-700/50">
+                      {project.tags.slice(0, 4).map((tag, index) => (
+                        <span
+                          key={index}
+                          className="px-2.5 py-1 text-[10px] sm:text-xs font-semibold bg-slate-700/70 text-slate-300 rounded-lg group-hover:bg-slate-600 transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {project.tags.length > 4 && (
+                        <span className="px-2.5 py-1 text-[10px] sm:text-xs font-semibold bg-slate-700/70 text-slate-400 rounded-lg">
+                          +{project.tags.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
               );
             })}
           </motion.div>
