@@ -219,32 +219,46 @@ export const filterCategories = [
 export const skillsData = {
   frontend: [
     { name: "React", level: 95, color: "#60a5fa" },
-    { name: "JavaScript", level: 90, color: "#fbbf24" },
-    { name: "TypeScript", level: 85, color: "#3b82f6" },
-    { name: "HTML/CSS", level: 90, color: "#fb923c" },
-    { name: "Tailwind", level: 85, color: "#22d3ee" },
     { name: "Next.js", level: 80, color: "#ffffff" },
     { name: "Angular", level: 80, color: "#ef4444" },
+    { name: "JavaScript (ES6+)", level: 90, color: "#fbbf24" },
+    { name: "TypeScript", level: 85, color: "#3b82f6" },
+    { name: "HTML5", level: 90, color: "#fb923c" },
+    { name: "SCSS", level: 85, color: "#db2777" },
+    { name: "Tailwind", level: 85, color: "#22d3ee" },
   ],
   backend: [
     { name: "Node.js", level: 85, color: "#4ade80" },
-    { name: "WebSocket", level: 80, color: "#6366f1" },
-    { name: "GraphQL", level: 70, color: "#f472b6" },
-    { name: "Spring-boot", level: 70, color: "#10b981" },
-    { name: "REST APIs", level: 90, color: "#c084fc" },
     { name: "Golang", level: 80, color: "#06b6d4" },
+    { name: "Java", level: 80, color: "#f97316" },
+    { name: "Spring Boot", level: 80, color: "#6cb52d" },
+    { name: "Spring Eureka", level: 75, color: "#6cb52d" },
+    { name: "Spring Gateway", level: 75, color: "#6cb52d" },
+    { name: "Apache Kafka", level: 70, color: "#000000" },
   ],
   database: [
-    { name: "PostgreSQL", level: 60, color: "#3b82f6" },
+    { name: "PostgreSQL", level: 80, color: "#3b82f6" },
+    { name: "MongoDB", level: 75, color: "#10b981" },
     { name: "SqLite", level: 80, color: "#22c55e" },
+  ],
+  apis: [
+    { name: "RESTful APIs", level: 90, color: "#c084fc" },
+    { name: "WebSockets", level: 85, color: "#6366f1" },
+  ],
+  devops: [
+    { name: "Git", level: 85, color: "#f97316" },
+    { name: "GitHub", level: 85, color: "#ffffff" },
+    { name: "Unix", level: 80, color: "#fcd34d" },
+    { name: "Shell Scripting", level: 75, color: "#4ade80" },
+    { name: "Docker", level: 70, color: "#0ea5e9" },
   ],
   tools: [
     { name: "VS Code", level: 95, color: "#3b82f6" },
-    { name: "Git", level: 70, color: "#f97316" },
-    { name: "Docker", level: 65, color: "#0ea5e9" },
-    { name: "Postman", level: 60, color: "#fb923c" },
+    { name: "Postman", level: 80, color: "#fb923c" },
+    { name: "VirtualBox", level: 60, color: "#2563eb" },
+    { name: "Testing", level: 75, color: "#ef4444" },
+    { name: "Pandas", level: 65, color: "#150458" },
     { name: "Figma", level: 15, color: "#a78bfa" },
-    { name: "Canva", level: 60, color: "#ec4899" },
   ],
 };
 
@@ -307,10 +321,10 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="bg-slate-950 text-white scroll-smooth">
+    <div className="bg-[#0a0a0a] text-slate-200 scroll-smooth font-sans">
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 origin-left z-[100]"
+        className="fixed top-0 left-0 right-0 h-1 bg-slate-300 origin-left z-[100]"
         style={{ scaleX }}
       />
 
@@ -375,25 +389,25 @@ const Portfolio = () => {
       `}</style>
 
       {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-slate-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="text-xl sm:text-2xl font-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent tracking-tight">
-              AH
+            <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight">
+              AH.
             </a>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-6 lg:gap-8">
-              <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="text-sm lg:text-base text-slate-300 hover:text-amber-400 transition-colors duration-300 cursor-pointer">
+              <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="text-sm lg:text-base text-slate-400 hover:text-slate-100 transition-colors duration-300 font-medium cursor-pointer">
                 Home
               </a>
-              <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-sm lg:text-base text-slate-300 hover:text-amber-400 transition-colors duration-300 cursor-pointer">
+              <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-sm lg:text-base text-slate-400 hover:text-slate-100 transition-colors duration-300 font-medium cursor-pointer">
                 Skills
               </a>
-              <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="text-sm lg:text-base text-slate-300 hover:text-amber-400 transition-colors duration-300 cursor-pointer">
+              <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="text-sm lg:text-base text-slate-400 hover:text-slate-100 transition-colors duration-300 font-medium cursor-pointer">
                 Projects
               </a>
-              <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-sm lg:text-base text-slate-300 hover:text-amber-400 transition-colors duration-300 cursor-pointer">
+              <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-sm lg:text-base text-slate-400 hover:text-slate-100 transition-colors duration-300 font-medium cursor-pointer">
                 Contact
               </a>
             </div>
@@ -401,7 +415,7 @@ const Portfolio = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-slate-300 hover:text-emerald-400 transition-colors"
+              className="md:hidden p-2 text-slate-400 hover:text-slate-200 transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -414,28 +428,28 @@ const Portfolio = () => {
               <a
                 href="#home"
                 onClick={(e) => handleNavClick(e, 'home')}
-                className="text-slate-300 hover:text-amber-400 transition-colors duration-300 py-2 cursor-pointer"
+                className="text-slate-400 hover:text-slate-200 transition-colors duration-300 py-2 cursor-pointer"
               >
                 Home
               </a>
               <a
                 href="#skills"
                 onClick={(e) => handleNavClick(e, 'skills')}
-                className="text-slate-300 hover:text-amber-400 transition-colors duration-300 py-2 cursor-pointer"
+                className="text-slate-400 hover:text-slate-200 transition-colors duration-300 py-2 cursor-pointer"
               >
                 Skills
               </a>
               <a
                 href="#projects"
                 onClick={(e) => handleNavClick(e, 'projects')}
-                className="text-slate-300 hover:text-amber-400 transition-colors duration-300 py-2 cursor-pointer"
+                className="text-slate-400 hover:text-slate-200 transition-colors duration-300 py-2 cursor-pointer"
               >
                 Projects
               </a>
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className="text-slate-300 hover:text-amber-400 transition-colors duration-300 py-2 cursor-pointer"
+                className="text-slate-400 hover:text-slate-200 transition-colors duration-300 py-2 cursor-pointer"
               >
                 Contact
               </a>
@@ -445,27 +459,26 @@ const Portfolio = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative overflow-hidden h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-16">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#0c1222] to-[#1e1b4b]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.15),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(59,130,246,0.12),transparent_50%)]"></div>
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-amber-500/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <section id="home" className="relative overflow-hidden h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-16 font-sans">
+        {/* Minimal Dark Background */}
+        <div className="absolute inset-0 bg-[#0a0a0a]"></div>
+        <div className="absolute top-0 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05),transparent_50%)]"></div>
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-slate-800/20 rounded-full blur-[120px] mix-blend-screen opacity-50 pointer-events-none"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-slate-800/20 rounded-full blur-[120px] mix-blend-screen opacity-50 pointer-events-none" style={{ animationDelay: '1s' }}></div>
 
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full relative z-10">
           {/* Left: Avatar */}
           <motion.div
             className="flex-shrink-0 relative"
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+            <div className="absolute inset-0 bg-slate-700/20 rounded-full blur-2xl opacity-60"></div>
             <motion.div
-              className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-amber-500 via-yellow-500 to-amber-600 flex items-center justify-center text-4xl sm:text-5xl font-bold shadow-2xl mx-auto ring-4 ring-amber-500/50"
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-4xl sm:text-5xl font-medium shadow-xl mx-auto backdrop-blur-sm text-slate-200"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               AH
             </motion.div>
@@ -479,15 +492,15 @@ const Portfolio = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             {/* Greeting */}
-            <p className="text-slate-300 text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-medium">
+            <p className="text-slate-400 text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 font-light">
               Hi there, I am{" "}
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl block sm:inline mt-2 sm:mt-0 tracking-tight">
+              <span className="text-slate-100 font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl block sm:inline mt-2 sm:mt-0 tracking-tight">
                 Amine HABCHI
               </span>
             </p>
 
             {/* Role */}
-            <p className="text-lg sm:text-xl md:text-2xl text-transparent bg-gradient-to-r from-blue-200 via-slate-200 to-blue-300 bg-clip-text mb-4 sm:mb-6 font-semibold">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-4 sm:mb-6 font-normal">
               Full Stack Developer & Creative Problem Solver
             </p>
 
@@ -515,21 +528,20 @@ const Portfolio = () => {
 
             {/* Buttons & Socials */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 20 }}
+              className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start mt-8"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <motion.a
                 href="/amine-habchi.pdf"
                 download="Amine-Habchi.pdf"
-                className="group relative overflow-hidden bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-600 hover:via-yellow-600 hover:to-amber-700 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-2 font-semibold text-sm sm:text-base transition-all duration-300 w-full sm:w-auto justify-center shadow-lg shadow-amber-500/30 text-slate-900"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(245, 158, 11, 0.4)" }}
-                whileTap={{ scale: 0.95 }}
+                className="group relative px-6 py-2.5 rounded-full flex items-center gap-2 font-medium text-sm sm:text-base transition-colors duration-300 w-full sm:w-auto justify-center bg-slate-100 text-slate-900 hover:bg-white"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-400 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
-                <Download size={18} className="group-hover:animate-bounce relative z-10" />
-                <span className="relative z-10">Download CV</span>
+                <Download size={18} className="group-hover:-translate-y-0.5 transition-transform" />
+                <span>Download CV</span>
               </motion.a>
 
               <div className="flex flex-wrap gap-3 justify-center">
@@ -599,12 +611,10 @@ const Portfolio = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 overflow-hidden">
+      <section id="skills" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 overflow-hidden font-sans">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#1e293b] to-[#0f172a]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(245,158,11,0.1),transparent_50%)]"></div>
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-600/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-700/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute inset-0 bg-[#0a0a0a]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02),transparent_50%)]"></div>
 
         <div className="w-full max-w-7xl relative z-10">
           <motion.div
@@ -613,7 +623,7 @@ const Portfolio = () => {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUpVariant}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-4 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent px-4 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-slate-100 px-4 tracking-tight">
               Skills & Technologies
             </h2>
             <p className="text-center text-slate-400 mb-12 sm:mb-16 px-4 text-base sm:text-lg">
@@ -630,42 +640,19 @@ const Portfolio = () => {
             variants={staggerContainer}
           >
             {Object.entries(skillsData).map(([category, skills], index) => {
-              // Define category-specific colors - Midnight Blue/Gold theme
-              const categoryStyles = {
-                frontend: {
-                  gradient: "from-amber-500/10 via-yellow-500/10 to-amber-500/10",
-                  border: "border-amber-500/30",
-                  textGradient: "from-amber-400 to-yellow-400",
-                  iconBg: "from-amber-500/20 to-yellow-500/20",
-                  iconColor: "text-amber-400"
-                },
-                backend: {
-                  gradient: "from-blue-500/10 via-indigo-500/10 to-blue-500/10",
-                  border: "border-blue-500/30",
-                  textGradient: "from-blue-400 to-indigo-400",
-                  iconBg: "from-blue-500/20 to-indigo-500/20",
-                  iconColor: "text-blue-400"
-                },
-                database: {
-                  gradient: "from-amber-600/10 via-orange-500/10 to-amber-600/10",
-                  border: "border-amber-600/30",
-                  textGradient: "from-amber-500 to-orange-400",
-                  iconBg: "from-amber-600/20 to-orange-500/20",
-                  iconColor: "text-amber-500"
-                },
-                tools: {
-                  gradient: "from-blue-600/10 via-sky-500/10 to-blue-600/10",
-                  border: "border-blue-600/30",
-                  textGradient: "from-blue-500 to-sky-400",
-                  iconBg: "from-blue-600/20 to-sky-500/20",
-                  iconColor: "text-blue-500"
-                }
+              // Define a uniform minimal dark theme for categories
+              const style = {
+                gradient: "from-slate-900/80 to-[#111111]",
+                border: "border-slate-800/60",
+                textGradient: "from-slate-200 to-slate-400",
+                iconBg: "bg-slate-800/50",
+                iconColor: "text-slate-300"
               };
-
-              const style = categoryStyles[category] || categoryStyles.frontend;
               const Icon = category === 'frontend' ? Globe :
                 category === 'backend' ? Database :
-                  category === 'database' ? Database : Wrench;
+                  category === 'database' ? Database :
+                    category === 'apis' ? Code :
+                      category === 'devops' ? Layers : Wrench;
 
               return (
                 <motion.div
@@ -674,89 +661,34 @@ const Portfolio = () => {
                   variants={fadeInUpVariant}
                   whileHover={{ scale: 1.01 }}
                 >
-                  {/* Decorative Background Elements */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-white/5 to-transparent rounded-full translate-y-1/2 -translate-x-1/2"></div>
-
                   {/* Category Header */}
-                  <div className="relative flex items-center gap-4 mb-8 pb-6 border-b border-white/10">
-                    <div className={`p-4 bg-gradient-to-br ${style.iconBg} rounded-2xl border ${style.border} shadow-lg`}>
-                      <Icon className={`w-7 h-7 sm:w-8 sm:h-8 ${style.iconColor}`} />
+                  <div className="relative flex items-center gap-4 mb-6 pb-4 border-b border-slate-800/50">
+                    <div className={`p-3 ${style.iconBg} rounded-xl border ${style.border}`}>
+                      <Icon className={`w-6 h-6 sm:w-7 sm:h-7 ${style.iconColor}`} />
                     </div>
-                    <h3 className={`text-2xl sm:text-3xl md:text-4xl font-black text-transparent bg-gradient-to-r ${style.textGradient} bg-clip-text capitalize tracking-tight`}>
-                      {category}
+                    <h3 className={`text-xl sm:text-2xl font-bold text-transparent bg-gradient-to-r ${style.textGradient} bg-clip-text capitalize tracking-tight`}>
+                      {category.replace('lowlevel', 'low level').replace('fullstack', 'full stack')}
                     </h3>
                   </div>
 
-                  {/* Skills Grid */}
-                  <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Skills Pills */}
+                  <div className="relative flex flex-wrap gap-3">
                     {skills.map((skill, skillIndex) => (
                       <motion.div
                         key={skillIndex}
-                        className="group"
+                        className="group flex items-center gap-2.5 bg-slate-800/40 border border-slate-700/50 rounded-full py-2 px-4 hover:bg-slate-700/50 hover:border-slate-600 transition-colors duration-300"
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: skillIndex * 0.05 }}
                       >
-                        {/* Skill Card */}
-                        <div className="relative bg-slate-800/60 backdrop-blur-sm rounded-2xl p-5 border border-slate-700/50 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-white/5 hover:-translate-y-1">
-                          {/* Skill Name and Level */}
-                          <div className="flex items-start justify-between mb-3">
-                            <span className="text-slate-100 font-bold text-base sm:text-lg">
-                              {skill.name}
-                            </span>
-                            <span
-                              className="text-sm font-black px-2 py-0.5 rounded-lg"
-                              style={{
-                                color: skill.color,
-                                backgroundColor: `${skill.color}20`
-                              }}
-                            >
-                              {skill.level}%
-                            </span>
-                          </div>
-
-                          {/* Circular Progress */}
-                          <div className="relative w-full aspect-square max-w-[120px] mx-auto">
-                            <svg className="w-full h-full -rotate-90 drop-shadow-lg" viewBox="0 0 100 100">
-                              {/* Background Circle */}
-                              <circle
-                                cx="50"
-                                cy="50"
-                                r="40"
-                                fill="none"
-                                stroke="rgba(71, 85, 105, 0.3)"
-                                strokeWidth="8"
-                              />
-                              {/* Progress Circle */}
-                              <motion.circle
-                                cx="50"
-                                cy="50"
-                                r="40"
-                                fill="none"
-                                stroke={skill.color}
-                                strokeWidth="8"
-                                strokeLinecap="round"
-                                strokeDasharray={`${2 * Math.PI * 40}`}
-                                initial={{ strokeDashoffset: 2 * Math.PI * 40 }}
-                                whileInView={{
-                                  strokeDashoffset: 2 * Math.PI * 40 * (1 - skill.level / 100),
-                                }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1.5, ease: "easeOut", delay: skillIndex * 0.05 }}
-                                style={{
-                                  filter: `drop-shadow(0 0 6px ${skill.color}66)`
-                                }}
-                              />
-                            </svg>
-                            {/* Center Dot */}
-                            <div
-                              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
-                              style={{ backgroundColor: skill.color }}
-                            ></div>
-                          </div>
-                        </div>
+                        <div
+                          className="w-2 h-2 rounded-full shadow-sm"
+                          style={{ backgroundColor: skill.color }}
+                        ></div>
+                        <span className="text-slate-200 font-medium text-sm sm:text-base tracking-wide">
+                          {skill.name}
+                        </span>
                       </motion.div>
                     ))}
                   </div>
@@ -768,12 +700,10 @@ const Portfolio = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="relative min-h-screen py-16 sm:py-20 px-4 sm:px-6 flex items-center overflow-hidden">
+      <section id="projects" className="relative min-h-screen py-16 sm:py-20 px-4 sm:px-6 flex items-center overflow-hidden font-sans">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.1),transparent_50%)]"></div>
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-amber-600/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute inset-0 bg-[#0a0a0a]"></div>
+        <div className="absolute top-0 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03),transparent_50%)]"></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <motion.div
@@ -782,7 +712,7 @@ const Portfolio = () => {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUpVariant}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-4 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent px-4 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-slate-100 px-4 tracking-tight">
               Featured Projects
             </h2>
             <p className="text-center text-slate-400 mb-12 sm:mb-16 px-4 text-base sm:text-lg">
@@ -804,9 +734,9 @@ const Portfolio = () => {
                 <motion.button
                   key={category.key}
                   onClick={() => setActiveFilter(category.key)}
-                  className={`px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full font-bold text-xs sm:text-sm md:text-base transition-all duration-300 tracking-wide ${isActive
-                    ? `bg-gradient-to-r ${category.gradient} text-white shadow-lg shadow-current/30 ring-2 ring-white/20`
-                    : "bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white hover:shadow-md"
+                  className={`px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full font-medium text-xs sm:text-sm md:text-base transition-all duration-300 tracking-wide ${isActive
+                    ? "bg-slate-100 text-slate-900 shadow-lg shadow-white/10"
+                    : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200"
                     }`}
                   variants={scaleInVariant}
                   whileHover={{ scale: 1.08, y: -2 }}
@@ -827,61 +757,23 @@ const Portfolio = () => {
             variants={staggerContainer}
           >
             {filteredProjects.map((project, index) => {
-              // Define category-specific colors - Midnight Blue/Gold theme
-              const categoryColors = {
-                lowlevel: {
-                  border: "border-blue-700/50",
-                  hoverBorder: "hover:border-blue-500/70",
-                  shadow: "hover:shadow-blue-500/20",
-                  gradient: "from-blue-500/10 to-indigo-500/10",
-                  badgeBg: "bg-blue-500/20",
-                  badgeText: "text-blue-300"
-                },
-                frontend: {
-                  border: "border-amber-700/50",
-                  hoverBorder: "hover:border-amber-500/70",
-                  shadow: "hover:shadow-amber-500/20",
-                  gradient: "from-amber-500/10 to-yellow-500/10",
-                  badgeBg: "bg-amber-500/20",
-                  badgeText: "text-amber-300"
-                },
-                backend: {
-                  border: "border-blue-700/50",
-                  hoverBorder: "hover:border-blue-500/70",
-                  shadow: "hover:shadow-blue-500/20",
-                  gradient: "from-blue-500/10 to-sky-500/10",
-                  badgeBg: "bg-blue-500/20",
-                  badgeText: "text-blue-300"
-                },
-                fullstack: {
-                  border: "border-amber-700/50",
-                  hoverBorder: "hover:border-amber-500/70",
-                  shadow: "hover:shadow-amber-500/20",
-                  gradient: "from-amber-500/10 via-yellow-500/10 to-orange-500/10",
-                  badgeBg: "bg-amber-500/20",
-                  badgeText: "text-amber-300"
-                },
-                tools: {
-                  border: "border-indigo-700/50",
-                  hoverBorder: "hover:border-indigo-500/70",
-                  shadow: "hover:shadow-indigo-500/20",
-                  gradient: "from-indigo-500/10 to-blue-500/10",
-                  badgeBg: "bg-indigo-500/20",
-                  badgeText: "text-indigo-300"
-                },
+              const minimalStyle = {
+                border: "border-slate-800",
+                hoverBorder: "hover:border-slate-700",
+                shadow: "shadow-none",
+                badgeBg: "bg-slate-800",
+                badgeText: "text-slate-300"
               };
-              const colors = categoryColors[project.category] || categoryColors.frontend;
+              const colors = minimalStyle;
 
               return (
                 <motion.div
                   key={project.id}
-                  className={`group relative bg-slate-800/90 backdrop-blur-sm rounded-2xl overflow-hidden border ${colors.border} ${colors.hoverBorder} transition-all duration-500 hover:shadow-2xl ${colors.shadow}`}
+                  className={`group relative bg-[#111111] rounded-2xl overflow-hidden border ${colors.border} ${colors.hoverBorder} transition-all duration-500 ${colors.shadow}`}
                   variants={fadeInUpVariant}
-                  whileHover={{ y: -10, scale: 1.02 }}
+                  whileHover={{ y: -5 }}
                 >
-                  {/* Gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
-                  <div className="relative overflow-hidden h-48">
+                  <div className="relative overflow-hidden h-48 border-b border-slate-800">
                     {project.image && project.image !== "none" ? (
                       <img
                         src={project.image}
@@ -889,96 +781,12 @@ const Portfolio = () => {
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                     ) : (
-                      <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${project.category === 'lowlevel' ? 'from-blue-900/40 via-slate-900 to-indigo-900/40' :
-                        project.category === 'frontend' ? 'from-amber-900/40 via-slate-900 to-yellow-900/40' :
-                          project.category === 'backend' ? 'from-blue-900/40 via-slate-900 to-sky-900/40' :
-                            project.category === 'fullstack' ? 'from-amber-900/40 via-slate-900 to-orange-900/40' :
-                              'from-indigo-900/40 via-slate-900 to-blue-900/40'
-                        } relative overflow-hidden`}>
-                        {/* Animated background effect */}
-                        <div className="absolute inset-0 opacity-20">
-                          {[...Array(20)].map((_, i) => (
-                            <div
-                              key={i}
-                              className={`absolute ${project.category === 'lowlevel' ? 'bg-blue-500/30' :
-                                project.category === 'frontend' ? 'bg-amber-500/30' :
-                                  project.category === 'backend' ? 'bg-blue-500/30' :
-                                    project.category === 'fullstack' ? 'bg-amber-500/30' :
-                                      'bg-indigo-500/30'
-                                }`}
-                              style={{
-                                width: `${Math.random() * 3}px`,
-                                height: `${Math.random() * 100}%`,
-                                left: `${Math.random() * 100}%`,
-                                animation: `pulse ${2 + Math.random() * 3}s ease-in-out infinite`,
-                                animationDelay: `${Math.random() * 2}s`,
-                              }}
-                            />
-                          ))}
-                        </div>
-
-                        {/* Project category label */}
+                      <div className="w-full h-full flex items-center justify-center bg-slate-900 relative overflow-hidden">
                         <div className="relative z-10 text-center px-4">
-                          {project.category === "lowlevel" && (
-                            <div className="inline-block">
-                              <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text mb-2">
-                                LOW LEVEL
-                              </div>
-                              <div className="flex gap-2 justify-center">
-                                <div className="w-12 sm:w-16 h-1 bg-blue-500 rounded"></div>
-                                <div className="w-8 sm:w-12 h-1 bg-sky-500 rounded"></div>
-                                <div className="w-6 sm:w-8 h-1 bg-indigo-500 rounded"></div>
-                              </div>
-                            </div>
-                          )}
-                          {project.category === "frontend" && (
-                            <div className="inline-block">
-                              <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text mb-2">
-                                FRONTEND
-                              </div>
-                              <div className="flex gap-1 justify-center">
-                                <div className="w-3 h-3 bg-amber-500 rounded-full animate-bounce"></div>
-                                <div
-                                  className="w-3 h-3 bg-yellow-500 rounded-full animate-bounce"
-                                  style={{ animationDelay: "0.1s" }}
-                                ></div>
-                                <div
-                                  className="w-3 h-3 bg-orange-500 rounded-full animate-bounce"
-                                  style={{ animationDelay: "0.2s" }}
-                                ></div>
-                              </div>
-                            </div>
-                          )}
-                          {project.category === "backend" && (
-                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text">
-                              BACKEND
-                            </div>
-                          )}
-                          {project.category === "fullstack" && (
-                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 bg-clip-text">
-                              FULL STACK
-                            </div>
-                          )}
-                          {project.category === "tools" && (
-                            <div className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-gradient-to-r from-indigo-400 to-blue-500 bg-clip-text">
-                              TOOLS
-                            </div>
-                          )}
+                          <div className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-500 uppercase">
+                            {project.title}
+                          </div>
                         </div>
-
-                        {/* Corner decoration */}
-                        <div className={`absolute top-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br ${project.category === 'lowlevel' ? 'from-blue-500/20' :
-                          project.category === 'frontend' ? 'from-amber-500/20' :
-                            project.category === 'backend' ? 'from-blue-500/20' :
-                              project.category === 'fullstack' ? 'from-amber-500/20' :
-                                'from-indigo-500/20'
-                          } to-transparent`}></div>
-                        <div className={`absolute bottom-0 left-0 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-tr ${project.category === 'lowlevel' ? 'from-sky-500/20' :
-                          project.category === 'frontend' ? 'from-yellow-500/20' :
-                            project.category === 'backend' ? 'from-indigo-500/20' :
-                              project.category === 'fullstack' ? 'from-orange-500/20' :
-                                'from-blue-500/20'
-                          } to-transparent`}></div>
                       </div>
                     )}
                   </div>
@@ -1020,7 +828,7 @@ const Portfolio = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-black mb-3 text-slate-100 group-hover:text-white transition-colors tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 text-slate-100 group-hover:text-white transition-colors tracking-tight">
                       {project.title}
                     </h3>
 
@@ -1034,13 +842,13 @@ const Portfolio = () => {
                       {project.tags.slice(0, 4).map((tag, index) => (
                         <span
                           key={index}
-                          className="px-2.5 py-1 text-[10px] sm:text-xs font-semibold bg-slate-700/70 text-slate-300 rounded-lg group-hover:bg-slate-600 transition-colors"
+                          className="px-2.5 py-1 text-[10px] sm:text-xs font-medium bg-slate-800 text-slate-300 rounded-lg border border-slate-700 hover:bg-slate-700 transition-colors"
                         >
                           {tag}
                         </span>
                       ))}
                       {project.tags.length > 4 && (
-                        <span className="px-2.5 py-1 text-[10px] sm:text-xs font-semibold bg-slate-700/70 text-slate-400 rounded-lg">
+                        <span className="px-2.5 py-1 text-[10px] sm:text-xs font-medium bg-slate-800 text-slate-400 rounded-lg border border-slate-700">
                           +{project.tags.length - 4}
                         </span>
                       )}
@@ -1062,11 +870,9 @@ const Portfolio = () => {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="relative bg-slate-800/50 py-12 sm:py-16 px-4 sm:px-6 border-t border-slate-700 min-h-[50vh] flex items-center overflow-hidden">
+      <footer id="contact" className="relative bg-[#0a0a0a] py-12 sm:py-16 px-4 sm:px-6 border-t border-slate-800/50 min-h-[50vh] flex items-center overflow-hidden font-sans">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#1e293b] to-[#0f172a]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.1),transparent_50%)]"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/8 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.03),transparent_50%)]"></div>
 
         <div className="max-w-4xl mx-auto text-center w-full relative z-10">
           <motion.div
@@ -1075,7 +881,7 @@ const Portfolio = () => {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUpVariant}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 sm:mb-8 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-slate-100 tracking-tight">
               Let's Connect
             </h2>
             <p className="text-slate-300 mb-6 sm:mb-8 text-base sm:text-lg md:text-xl px-4 font-medium">
@@ -1095,11 +901,10 @@ const Portfolio = () => {
               href="https://cv.emage-me.com/me/amine-habchi-R5rIw9qyVmANeH9EkHyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-600 hover:via-yellow-600 hover:to-amber-700 rounded-full text-slate-900 font-semibold transition-all duration-300 shadow-lg shadow-amber-500/30"
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(245, 158, 11, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
+              className="group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-slate-100 hover:bg-white rounded-full text-slate-900 font-medium transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-400 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
               <ExternalLink size={20} className="relative z-10" />
               <span className="relative z-10">View My Interactive CV</span>
             </motion.a>
