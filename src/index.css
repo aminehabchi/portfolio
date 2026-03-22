@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 }
 
-@keyframes bubble {
-  0%   { transform: translate(0px, 0px) scale(1); }
-  25%  { transform: translate(5px, -8px) scale(1.02); }
-  50%  { transform: translate(-6px, 6px) scale(0.98); }
-  75%  { transform: translate(-4px, -5px) scale(1.03); }
-  100% { transform: translate(0px, 0px) scale(1); }
-}
-
-.animate-bubble {
-  animation: bubble 6s ease-in-out infinite alternate;
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
