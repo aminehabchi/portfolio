@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   Download, Github, Linkedin, Trophy, Mail, MapPin,
-  GraduationCap, Layers, Cpu, Zap, Code2, Globe, Server,
+  GraduationCap, Cpu, Zap, Code2, Globe, Server,
 } from "lucide-react";
 
 const fadeUp = {
