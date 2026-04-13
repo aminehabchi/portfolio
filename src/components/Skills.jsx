@@ -38,33 +38,48 @@ export default function Skills() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
-          {Object.entries(skillsData).map(([category, skills]) => (
-            <motion.div
-              key={category}
-              variants={fadeUp}
-              className="bg-white/[0.03] border border-white/[0.07] rounded-2xl p-6 hover:border-white/[0.12] transition-colors duration-300"
-            >
-              <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-widest mb-4">
-                {category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span
-                    key={skill.name}
-                    className="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-white/[0.04] border border-white/[0.06] rounded-full px-3 py-1 hover:text-slate-200 transition-colors duration-200"
-                  >
+          {Object.entries(skillsData).map(([category, skills]) => {
+            const isAI = category === "AI & ML";
+            const isData = category === "Data Analytics";
+            const accent = isAI
+              ? "border-violet-500/20 hover:border-violet-500/40"
+              : isData
+              ? "border-cyan-500/20 hover:border-cyan-500/40"
+              : "border-white/[0.07] hover:border-white/[0.12]";
+            const headerColor = isAI
+              ? "text-violet-400"
+              : isData
+              ? "text-cyan-400"
+              : "text-slate-300";
+
+            return (
+              <motion.div
+                key={category}
+                variants={fadeUp}
+                className={`bg-white/[0.03] border ${accent} rounded-2xl p-6 transition-colors duration-300`}
+              >
+                <h3 className={`text-sm font-semibold uppercase tracking-widest mb-4 ${headerColor}`}>
+                  {category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
                     <span
-                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: skill.color }}
-                    />
-                    {skill.name}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                      key={skill.name}
+                      className="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-white/[0.04] border border-white/[0.06] rounded-full px-3 py-1 hover:text-slate-200 transition-colors duration-200"
+                    >
+                      <span
+                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: skill.color }}
+                      />
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

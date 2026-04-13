@@ -156,6 +156,17 @@ export const projects = [
   },
   {
     id: 15,
+    title: "Market Place",
+    description:
+      "A distributed e-commerce ecosystem built with a microservices architecture. Features service discovery, an API gateway, async messaging via Kafka, and Redis caching across independently deployable Spring Boot services.",
+    image: null,
+    tags: ["Spring Boot", "Angular", "Kafka", "MongoDB", "Redis", "Docker", "Microservices"],
+    category: "fullstack",
+    github: "https://github.com/aminehabchi/market-place",
+    live: null,
+  },
+  {
+    id: 16,
     title: "Echo & Script",
     description:
       "A full-stack social blogging platform combining content creation with social features. Users create and share posts, interact through likes/comments, and communicate via real-time WebSocket chat.",
@@ -166,7 +177,7 @@ export const projects = [
     live: null,
   },
   {
-    id: 16,
+    id: 17,
     title: "Ideathon",
     description:
       "A platform where individuals and organizations launch short idea challenges to gather fresh perspectives, test assumptions, and spark innovation.",
@@ -177,7 +188,7 @@ export const projects = [
     live: "https://idea-thon.vercel.app/",
   },
   {
-    id: 17,
+    id: 18,
     title: "SeniorifyUI",
     description:
       "An Advanced Style Prompt Builder that transforms junior front-end developers into UI experts using AI-assisted guidance.",
@@ -199,7 +210,6 @@ export const filterCategories = [
 
 export const skillsData = {
   Frontend: [
-    { name: "React", color: "#60a5fa" },
     { name: "Next.js", color: "#e2e8f0" },
     { name: "Angular", color: "#ef4444" },
     { name: "JavaScript (ES6+)", color: "#fbbf24" },
@@ -214,6 +224,9 @@ export const skillsData = {
     { name: "Java", color: "#f97316" },
     { name: "Spring Boot", color: "#6cb52d" },
     { name: "Apache Kafka", color: "#94a3b8" },
+    { name: "Redis", color: "#ef4444" },
+    { name: "Spring Gateway", color: "#6cb52d" },
+    { name: "Spring Eureka", color: "#6cb52d" },
   ],
   Database: [
     { name: "PostgreSQL", color: "#3b82f6" },
@@ -236,5 +249,18 @@ export const skillsData = {
     { name: "Postman", color: "#fb923c" },
     { name: "Figma", color: "#a78bfa" },
     { name: "Testing", color: "#ef4444" },
+  ],
+  "Data Analytics": [
+    { name: "NumPy", color: "#4dabf7" },
+    { name: "Pandas", color: "#a78bfa" },
+    { name: "Data Wrangling", color: "#94a3b8" },
+    { name: "Data Visualization", color: "#f472b6" },
+  ],
+  "AI & ML": [
+    { name: "Python", color: "#4dabf7" },
+    { name: "Scikit-learn", color: "#f97316" },
+    { name: "Keras", color: "#ef4444" },
+    { name: "TensorFlow", color: "#fbbf24" },
+    { name: "spaCy", color: "#2dd4bf" },
   ],
 };
