@@ -21,12 +21,12 @@ const stats = [
 ];
 
 const focusAreas = [
-  { icon: Globe,   label: "Full Stack Web",      desc: "React, Next.js, Angular, Go, Java" },
-  { icon: Cpu,     label: "Systems & Low-Level",  desc: "Rust, TCP, Filesystems, Shells" },
+  { icon: Globe,   label: "Full Stack Web",      desc: "Next.js, Angular, Go, Spring-boot" },
+  { icon: Cpu,     label: "AI & Machine Learning",  desc: "LLMs, RAG, Claude API" },
   { icon: Zap,     label: "Real-Time Features",   desc: "WebSockets, Kafka, event-driven" },
 ];
 
-const topTech = ["React", "Go", "Rust", "Java", "Next.js", "Docker", "PostgreSQL", "Node.js"];
+const topTech = ["Go", "Rust", "Java", "Next.js", "Docker", "PostgreSQL", "Node.js"];
 
 export default function Hero() {
   return (
@@ -66,7 +66,7 @@ export default function Hero() {
           {/* Bio */}
           <motion.p initial="hidden" animate="visible" custom={0.2} variants={fadeUp}
             className="text-slate-400 text-base leading-relaxed mb-6 max-w-md">
-            I build full-stack web applications and low-level systems — from
+            I build full-stack web applications and low-level systems from
             interactive frontends with React and Angular to backend services with
             Go, Java, and Rust. I care about clean code, performance, and
             real-time features.
