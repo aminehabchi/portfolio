@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, X } from "lucide-react";
 import { projects, filterCategories } from "../data/portfolio";
+import SectionHeader from "./SectionHeader";
+import { useLanguage } from "../context/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -13,10 +15,7 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.05 } },
 };
 
-const categoryLabel = (cat) =>
-  cat.replace("lowlevel", "Low Level").replace("fullstack", "Full Stack");
-
-function ProjectModal({ project, onClose }) {
+function ProjectModal({ project, onClose, categoryLabel, t }) {
   return (
     <AnimatePresence>
       {project && (
@@ -42,12 +41,12 @@ function ProjectModal({ project, onClose }) {
             className="fixed z-50 inset-0 flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="pointer-events-auto w-full max-w-lg bg-[#0f0f0f] border border-white/[0.1] rounded-2xl overflow-hidden shadow-2xl"
+              className="pointer-events-auto w-full max-w-lg bg-[var(--card)] border border-[var(--border-1)] rounded-[3px] overflow-hidden shadow-2xl shadow-emerald-500/[0.07]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image */}
               {project.image && (
-                <div className="relative h-52 overflow-hidden bg-[#111] border-b border-white/[0.06]">
+                <div className="relative h-52 overflow-hidden bg-[var(--card-alt)] border-b border-[var(--border-1)]">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -61,23 +60,23 @@ function ProjectModal({ project, onClose }) {
                 {/* Header row */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+                    <span className="font-mono text-[10px] font-medium text-emerald-400 uppercase tracking-widest">
                       {categoryLabel(project.category)}
                     </span>
-                    <h3 className="text-xl font-bold text-white mt-1">
+                    <h3 className="font-display text-xl font-bold text-[var(--heading)] mt-1">
                       {project.title}
                     </h3>
                   </div>
                   <button
                     onClick={onClose}
-                    className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/[0.08] transition-all duration-200 ml-4 flex-shrink-0"
+                    className="p-1.5 rounded-[3px] text-[var(--muted)] hover:text-[var(--heading)] hover:bg-[var(--chip-hover)] transition-all duration-200 ml-4 flex-shrink-0"
                   >
                     <X size={16} />
                   </button>
                 </div>
 
                 {/* Description */}
-                <p className="text-slate-400 text-sm leading-relaxed mb-5">
+                <p className="text-[var(--body-muted)] text-sm leading-relaxed mb-5">
                   {project.description}
                 </p>
 
@@ -86,7 +85,7 @@ function ProjectModal({ project, onClose }) {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[11px] font-medium text-slate-400 bg-white/[0.05] border border-white/[0.08] rounded px-2.5 py-1"
+                      className="font-mono text-[11px] font-medium text-[var(--body-muted)] bg-[var(--chip)] border border-[var(--border-1)] rounded-[3px] px-2.5 py-1"
                     >
                       {tag}
                     </span>
@@ -100,7 +99,7 @@ function ProjectModal({ project, onClose }) {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.05] border border-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.1] transition-all duration-200 text-sm font-medium"
+                      className="flex items-center gap-2 px-4 py-2 rounded-[3px] bg-[var(--chip)] border border-[var(--border-1)] text-[var(--body)] hover:text-[var(--heading)] hover:border-emerald-500/30 transition-all duration-200 text-sm font-medium"
                     >
                       <Github size={14} />
                       GitHub
@@ -111,10 +110,10 @@ function ProjectModal({ project, onClose }) {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-slate-900 hover:bg-slate-100 transition-all duration-200 text-sm font-medium"
+                      className="flex items-center gap-2 px-4 py-2 rounded-[3px] bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 hover:shadow-[0_0_20px_-4px_rgba(52,211,153,0.5)] transition-shadow duration-300 text-sm font-semibold"
                     >
                       <ExternalLink size={14} />
-                      Live Demo
+                      {t("projects.liveDemo")}
                     </a>
                   )}
                 </div>
@@ -128,30 +127,23 @@ function ProjectModal({ project, onClose }) {
 }
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [active, setActive] = useState("fullstack");
   const [selected, setSelected] = useState(null);
+
+  const categoryLabel = (cat) => t(`projects.categories.${cat}`);
 
   const filtered =
     active === "all" ? projects : projects.filter((p) => p.category === active);
 
   return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={fadeUp}
-          className="mb-12 text-center"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
-            Projects
-          </h2>
-          <p className="text-slate-500 text-base">
-            {projects.length} projects across different domains
-          </p>
-        </motion.div>
+    <section id="projects" className="py-16 scroll-mt-10">
+      <div>
+        <SectionHeader
+          number="03"
+          title={t("projects.title")}
+          subtitle={t("projects.subtitle", projects.length)}
+        />
 
         {/* Filter */}
         <motion.div
@@ -159,117 +151,92 @@ export default function Projects() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={fadeUp}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="flex flex-wrap gap-2 mb-12"
         >
           {filterCategories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActive(cat.key)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-4 py-1.5 rounded-[3px] text-sm font-medium transition-all duration-200 ${
                 active === cat.key
-                  ? "bg-white text-slate-900"
-                  : "bg-white/[0.05] text-slate-400 border border-white/[0.08] hover:text-white hover:bg-white/[0.08]"
+                  ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 font-semibold"
+                  : "bg-[var(--chip)] text-[var(--body-muted)] border border-[var(--border-1)] hover:text-[var(--heading)] hover:border-emerald-500/30"
               }`}
             >
-              {cat.label}
+              {categoryLabel(cat.key)}
             </button>
           ))}
         </motion.div>
 
-        {/* Grid */}
+        {/* List */}
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
             initial="hidden"
             animate="visible"
             variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
+            className="flex flex-col rounded-[3px] border border-[var(--border-1)] divide-y divide-[var(--border-1)] overflow-hidden"
           >
             {filtered.map((project) => (
               <motion.article
                 key={project.id}
                 variants={fadeUp}
                 onClick={() => setSelected(project)}
-                className="group flex flex-col bg-white/[0.03] border border-white/[0.07] rounded-2xl overflow-hidden hover:border-white/[0.13] transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                className="group flex items-center gap-4 bg-[var(--card)] hover:bg-[var(--chip)] px-5 py-4 transition-colors duration-200 cursor-pointer"
               >
-                {/* Image */}
-                <div className="relative h-44 overflow-hidden bg-[#111] border-b border-white/[0.06]">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <span className="text-2xl font-bold text-white/[0.08] uppercase tracking-widest">
-                        {project.title}
-                      </span>
-                    </div>
-                  )}
-                </div>
+                {/* Category marker */}
+                <span className="hidden sm:block font-mono text-[10px] font-medium text-emerald-400/80 uppercase tracking-widest w-20 shrink-0">
+                  {categoryLabel(project.category)}
+                </span>
 
-                {/* Content */}
-                <div className="flex flex-col flex-1 p-5">
-                  {/* Top row */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
-                      {categoryLabel(project.category)}
-                    </span>
-                    <div className="flex gap-1.5">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="GitHub"
-                          className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/[0.08] transition-all duration-200"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Github size={14} />
-                        </a>
-                      )}
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Live demo"
-                          className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/[0.08] transition-all duration-200"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalLink size={14} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+                {/* Title + description */}
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-display text-sm font-semibold text-[var(--heading)] leading-snug group-hover:text-emerald-300 transition-colors duration-300">
                     {project.title}
                   </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-500 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
+                  <p className="text-[var(--muted)] text-xs leading-relaxed truncate">
                     {project.description}
                   </p>
+                </div>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.slice(0, 4).map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[11px] font-medium text-slate-500 bg-white/[0.04] border border-white/[0.06] rounded px-2 py-0.5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {project.tags.length > 4 && (
-                      <span className="text-[11px] font-medium text-slate-600 bg-white/[0.04] border border-white/[0.06] rounded px-2 py-0.5">
-                        +{project.tags.length - 4}
-                      </span>
-                    )}
-                  </div>
+                {/* Tags */}
+                <div className="hidden md:flex flex-wrap gap-1.5 shrink-0 max-w-[220px]">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[10px] font-medium text-[var(--muted)] bg-[var(--chip)] border border-[var(--border-1)] rounded-[3px] px-2 py-0.5"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex gap-1 shrink-0">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                      className="p-1.5 rounded-[3px] text-[var(--muted)] hover:text-[var(--heading)] hover:bg-[var(--chip-hover)] transition-all duration-200"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Github size={14} />
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Live demo"
+                      className="p-1.5 rounded-[3px] text-[var(--muted)] hover:text-[var(--heading)] hover:bg-[var(--chip-hover)] transition-all duration-200"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
                 </div>
               </motion.article>
             ))}
@@ -277,13 +244,18 @@ export default function Projects() {
         </AnimatePresence>
 
         {filtered.length === 0 && (
-          <p className="text-center text-slate-600 py-12">
-            No projects in this category.
+          <p className="text-center text-[var(--faint)] py-12">
+            {t("projects.noProjects")}
           </p>
         )}
       </div>
 
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      <ProjectModal
+        project={selected}
+        onClose={() => setSelected(null)}
+        categoryLabel={categoryLabel}
+        t={t}
+      />
     </section>
   );
 }

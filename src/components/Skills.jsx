@@ -1,76 +1,65 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { skillsData } from "../data/portfolio";
+import SectionHeader from "./SectionHeader";
+import { useLanguage } from "../context/LanguageContext";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
 };
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.07 } },
+  visible: { transition: { staggerChildren: 0.06 } },
 };
 
 export default function Skills() {
-  return (
-    <section id="skills" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={fadeUp}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
-            Skills
-          </h2>
-          <p className="text-slate-500 text-base">
-            Technologies I work with
-          </p>
-        </motion.div>
+  const { t } = useLanguage();
 
-        {/* Grid */}
+  return (
+    <section id="skills" className="py-16 scroll-mt-10">
+      <div>
+        <SectionHeader
+          number="02"
+          title={t("skills.title")}
+          subtitle={t("skills.subtitle")}
+        />
+
+        {/* Compact list */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="flex flex-col rounded-[3px] border border-[var(--border-1)] divide-y divide-[var(--border-1)] overflow-hidden"
         >
           {Object.entries(skillsData).map(([category, skills]) => {
             const isAI = category === "AI & ML";
             const isData = category === "Data Analytics";
-            const accent = isAI
-              ? "border-violet-500/20 hover:border-violet-500/40"
-              : isData
-              ? "border-cyan-500/20 hover:border-cyan-500/40"
-              : "border-white/[0.07] hover:border-white/[0.12]";
             const headerColor = isAI
               ? "text-violet-400"
               : isData
               ? "text-cyan-400"
-              : "text-slate-300";
+              : "text-emerald-400";
 
             return (
               <motion.div
                 key={category}
                 variants={fadeUp}
-                className={`bg-white/[0.03] border ${accent} rounded-2xl p-6 transition-colors duration-300`}
+                className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 bg-[var(--card)] hover:bg-[var(--chip)] px-5 py-4 transition-colors duration-200"
               >
-                <h3 className={`text-sm font-semibold uppercase tracking-widest mb-4 ${headerColor}`}>
-                  {category}
+                <h3 className={`font-mono text-[11px] font-medium uppercase tracking-widest w-full sm:w-32 shrink-0 ${headerColor}`}>
+                  {t(`skills.categories.${category}`)}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-white/[0.04] border border-white/[0.06] rounded-full px-3 py-1 hover:text-slate-200 transition-colors duration-200"
+                      className="flex items-center gap-1.5 text-xs font-medium text-[var(--body-muted)] bg-[var(--chip)] border border-[var(--border-1)] rounded-[3px] px-3 py-1 hover:text-[var(--body-strong)] hover:border-[var(--border-2)] transition-colors duration-200"
                     >
                       <span
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                        className="w-1.5 h-1.5 rounded-[3px] flex-shrink-0"
                         style={{ backgroundColor: skill.color }}
                       />
                       {skill.name}

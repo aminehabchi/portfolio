@@ -3,18 +3,80 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --surface: #ffffff;
+    --card: #f8fafc;
+    --card-alt: #eef1f5;
+    --border-1: rgba(15, 23, 42, 0.1);
+    --border-2: rgba(15, 23, 42, 0.16);
+    --chip: rgba(15, 23, 42, 0.045);
+    --chip-hover: rgba(15, 23, 42, 0.07);
+    --heading: #0f172a;
+    --body-strong: #1e293b;
+    --body: #334155;
+    --body-muted: #475569;
+    --muted: #64748b;
+    --faint: #94a3b8;
+    --dot-color: rgba(15, 23, 42, 0.07);
+    --card-inset: rgba(15, 23, 42, 0.06);
+    --scrollbar-track: var(--surface);
+    --scrollbar-thumb: #cbd5e1;
+  }
+
+  :root[data-theme="dark"] {
+    --surface: #060807;
+    --card: #0b0e0d;
+    --card-alt: #0a0c0b;
+    --border-1: rgba(255, 255, 255, 0.08);
+    --border-2: rgba(255, 255, 255, 0.12);
+    --chip: rgba(255, 255, 255, 0.045);
+    --chip-hover: rgba(255, 255, 255, 0.08);
+    --heading: #ffffff;
+    --body-strong: #e2e8f0;
+    --body: #cbd5e1;
+    --body-muted: #94a3b8;
+    --muted: #64748b;
+    --faint: #475569;
+    --dot-color: rgba(255, 255, 255, 0.055);
+    --card-inset: rgba(255, 255, 255, 0.04);
+    --scrollbar-thumb: #1f2937;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--surface);
+    color: var(--body-strong);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(52, 211, 153, 0.25);
+    color: var(--heading);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 5px;
+    border: 2px solid var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #34d399;
   }
 }
 
@@ -24,5 +86,27 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, #34d399 0%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .card-glow {
+    box-shadow: 0 0 0 1px var(--card-inset) inset;
+  }
+  .card-glow:hover {
+    box-shadow:
+      0 0 0 1px rgba(52, 211, 153, 0.15) inset,
+      0 8px 40px -12px rgba(52, 211, 153, 0.12);
   }
 }

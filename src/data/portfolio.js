@@ -147,7 +147,7 @@ export const projects = [
     id: 14,
     title: "FS",
     description:
-      "A simple filesystem implementation in Rust. Demonstrates how filesystems work at a low level — managing files, inodes, and blocks programmatically.",
+      "A simple filesystem implementation in Rust. Demonstrates how filesystems work at a low level managing files, inodes, and blocks programmatically.",
     image: null,
     tags: ["Rust", "Unix", "Filesystem"],
     category: "lowlevel",
@@ -201,11 +201,11 @@ export const projects = [
 ];
 
 export const filterCategories = [
-  { key: "fullstack", label: "Full Stack", icon: Code },
-  { key: "frontend", label: "Frontend", icon: Globe },
-  { key: "backend", label: "Backend", icon: Database },
-  { key: "lowlevel", label: "Low Level", icon: Wrench },
-  { key: "tools", label: "Tools", icon: Wrench },
+  { key: "fullstack", icon: Code },
+  { key: "frontend", icon: Globe },
+  { key: "backend", icon: Database },
+  { key: "lowlevel", icon: Wrench },
+  { key: "tools", icon: Wrench },
 ];
 
 export const skillsData = {
@@ -257,10 +257,9 @@ export const skillsData = {
     { name: "Data Visualization", color: "#f472b6" },
   ],
   "AI & ML": [
+    { name: "Claude Code", color: "#f97316" },
+    { name: "RAG", color: "#a78bfa" },
     { name: "Python", color: "#4dabf7" },
-    { name: "Scikit-learn", color: "#f97316" },
-    { name: "Keras", color: "#ef4444" },
-    { name: "TensorFlow", color: "#fbbf24" },
-    { name: "spaCy", color: "#2dd4bf" },
+    { name: "Ollama", color: "#ef4444" },
   ],
 };

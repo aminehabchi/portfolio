@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Github, Star, Users, BookOpen, GitFork } from "lucide-react";
+import { Star, Users, BookOpen, GitFork } from "lucide-react";
+import SectionHeader from "./SectionHeader";
+import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 
 const USERNAME = "aminehabchi";
 
@@ -36,6 +39,8 @@ const fadeUp = {
 };
 
 export default function GithubActivity() {
+  const { t } = useLanguage();
+  const { theme } = useTheme();
   const [profile, setProfile] = useState(null);
   const [repos,   setRepos]   = useState([]);
   const [loading, setLoading] = useState(true);
@@ -66,38 +71,32 @@ export default function GithubActivity() {
 
   const stats = profile
     ? [
-        { icon: BookOpen, value: profile.public_repos, label: "Repositories" },
-        { icon: Star,     value: totalStars,            label: "Total Stars"  },
-        { icon: GitFork,  value: totalForks,            label: "Total Forks"  },
-        { icon: Users,    value: profile.followers,     label: "Followers"    },
+        { icon: BookOpen, value: profile.public_repos, label: t("github.repositories") },
+        { icon: Star,     value: totalStars,            label: t("github.totalStars")  },
+        { icon: GitFork,  value: totalForks,            label: t("github.totalForks")  },
+        { icon: Users,    value: profile.followers,     label: t("github.followers")   },
       ]
     : [];
 
-  return (
-    <section id="github" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+  const statsCardParams = theme === "dark"
+    ? "theme=dark&bg_color=0b0e0d&title_color=34d399&icon_color=34d399&text_color=cbd5e1"
+    : "theme=default&bg_color=f8fafc&title_color=059669&icon_color=059669&text_color=334155";
 
-        {/* Header */}
-        <motion.div
-          initial="hidden" whileInView="visible" viewport={{ once: true }}
-          custom={0} variants={fadeUp}
-          className="flex items-center gap-3 mb-12"
-        >
-          <div className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08]">
-            <Github size={20} className="text-emerald-400" />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-white">GitHub Activity</h2>
-            <p className="text-sm text-slate-500">@{USERNAME}</p>
-          </div>
-        </motion.div>
+  return (
+    <section id="github" className="py-16 scroll-mt-10">
+      <div>
+        <SectionHeader
+          number="04"
+          title={t("github.title")}
+          subtitle={`@${USERNAME}`}
+        />
 
         {loading ? (
           <div className="flex justify-center py-20">
-            <div className="w-6 h-6 rounded-full border-2 border-emerald-400 border-t-transparent animate-spin" />
+            <div className="w-6 h-6 rounded-[3px] border-2 border-emerald-400 border-t-transparent animate-spin" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
             {/* Left: stats + languages */}
             <div className="flex flex-col gap-4">
@@ -111,11 +110,11 @@ export default function GithubActivity() {
                 {stats.map(({ icon: Icon, value, label }) => (
                   <div
                     key={label}
-                    className="flex flex-col gap-1 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-emerald-500/30 transition-colors duration-300"
+                    className="card-glow flex flex-col gap-1 p-5 rounded-[3px] bg-[var(--card)] border border-[var(--border-1)] hover:border-emerald-500/25 transition-all duration-300"
                   >
                     <Icon size={15} className="text-emerald-400 mb-1" />
-                    <span className="text-2xl font-bold text-white">{value}</span>
-                    <span className="text-xs text-slate-500">{label}</span>
+                    <span className="font-display text-2xl font-bold text-[var(--heading)]">{value}</span>
+                    <span className="text-xs text-[var(--muted)]">{label}</span>
                   </div>
                 ))}
               </motion.div>
@@ -124,14 +123,14 @@ export default function GithubActivity() {
               <motion.div
                 initial="hidden" whileInView="visible" viewport={{ once: true }}
                 custom={0.2} variants={fadeUp}
-                className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.07] flex-1"
+                className="card-glow p-5 rounded-[3px] bg-[var(--card)] border border-[var(--border-1)] flex-1 transition-all duration-300"
               >
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-4">
-                  Top Languages
+                <p className="font-mono text-[11px] font-medium text-[var(--body-muted)] uppercase tracking-widest mb-4">
+                  {t("github.topLanguages")}
                 </p>
 
                 {/* Bar */}
-                <div className="flex h-2 rounded-full overflow-hidden mb-5 gap-px">
+                <div className="flex h-2 rounded-[3px] overflow-hidden mb-5 gap-px">
                   {topLangs.map(([lang, count]) => (
                     <div
                       key={lang}
@@ -148,12 +147,12 @@ export default function GithubActivity() {
                     <div key={lang} className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span
-                          className="w-2.5 h-2.5 rounded-full shrink-0"
+                          className="w-2.5 h-2.5 rounded-[3px] shrink-0"
                           style={{ backgroundColor: LANG_COLORS[lang] ?? "#64748b" }}
                         />
-                        <span className="text-sm text-slate-300">{lang}</span>
+                        <span className="text-sm text-[var(--body)]">{lang}</span>
                       </div>
-                      <span className="text-xs text-slate-500">
+                      <span className="font-mono text-xs text-[var(--muted)]">
                         {Math.round((count / totalLangRepos) * 100)}%
                       </span>
                     </div>
@@ -169,15 +168,15 @@ export default function GithubActivity() {
               <motion.div
                 initial="hidden" whileInView="visible" viewport={{ once: true }}
                 custom={0.15} variants={fadeUp}
-                className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.07]"
+                className="card-glow p-5 rounded-[3px] bg-[var(--card)] border border-[var(--border-1)] transition-all duration-300"
               >
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-4">
-                  Contribution Graph
+                <p className="font-mono text-[11px] font-medium text-[var(--body-muted)] uppercase tracking-widest mb-4">
+                  {t("github.contributionGraph")}
                 </p>
                 <img
-                  src={`https://github-readme-stats.vercel.app/api?username=${USERNAME}&theme=dark&hide_border=true&bg_color=0d1117&title_color=34d399&icon_color=34d399&show_icons=true&include_all_commits=true&count_private=true`}
+                  src={`https://github-readme-stats.vercel.app/api?username=${USERNAME}&hide_border=true&${statsCardParams}&show_icons=true&include_all_commits=true&count_private=true`}
                   alt="GitHub stats"
-                  className="w-full rounded-lg"
+                  className="w-full rounded-[3px]"
                 />
               </motion.div>
 
@@ -185,10 +184,10 @@ export default function GithubActivity() {
               <motion.div
                 initial="hidden" whileInView="visible" viewport={{ once: true }}
                 custom={0.25} variants={fadeUp}
-                className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.07] flex-1"
+                className="card-glow p-5 rounded-[3px] bg-[var(--card)] border border-[var(--border-1)] flex-1 transition-all duration-300"
               >
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-4">
-                  Pinned Repositories
+                <p className="font-mono text-[11px] font-medium text-[var(--body-muted)] uppercase tracking-widest mb-4">
+                  {t("github.pinnedRepositories")}
                 </p>
                 <div className="flex flex-col gap-3">
                   {PINNED
@@ -200,23 +199,23 @@ export default function GithubActivity() {
                         href={repo.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-emerald-500/30 hover:bg-white/[0.05] transition-all duration-200 group"
+                        className="flex items-center justify-between p-3 rounded-[3px] bg-[var(--chip)] border border-[var(--border-1)] hover:border-emerald-500/30 hover:bg-[var(--chip)] transition-all duration-200 group"
                       >
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-slate-200 group-hover:text-emerald-400 transition-colors truncate">
+                          <p className="font-mono text-sm font-medium text-[var(--body-strong)] group-hover:text-emerald-400 transition-colors truncate">
                             {repo.name}
                           </p>
                           {repo.language && (
                             <div className="flex items-center gap-1.5 mt-0.5">
                               <span
-                                className="w-2 h-2 rounded-full"
+                                className="w-2 h-2 rounded-[3px]"
                                 style={{ backgroundColor: LANG_COLORS[repo.language] ?? "#64748b" }}
                               />
-                              <span className="text-xs text-slate-500">{repo.language}</span>
+                              <span className="text-xs text-[var(--muted)]">{repo.language}</span>
                             </div>
                           )}
                         </div>
-                        <div className="flex items-center gap-1 text-xs text-slate-500 shrink-0 ml-3">
+                        <div className="flex items-center gap-1 font-mono text-xs text-[var(--muted)] shrink-0 ml-3">
                           <Star size={12} />
                           {repo.stargazers_count}
                         </div>
